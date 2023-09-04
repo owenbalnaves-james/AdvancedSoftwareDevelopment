@@ -1,5 +1,5 @@
 const app = require("./Back-end/app");
-const debug = require("debug")("travel");
+const debug = require("debug")("account");
 const http = require("http");
 
 const normalizePort = val => {

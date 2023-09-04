@@ -10,7 +10,7 @@ const accountRoutes = require("./Routes/accounts")
 // const cors = require("cors");
 
 const app = express();
-mongoose.connect("mongodb+srv://lamtiensinh2301:tranhoanglam@cluster0.k3sdoe8.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://lamtiensinh2301:tranhoanglam@cluster0.k3sdoe8.mongodb.net/account?retryWrites=true&w=majority")
 .then(()=>console.log("Connect to database"))
 .catch(()=>console.log("Connection failed"));
 

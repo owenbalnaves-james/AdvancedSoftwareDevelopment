@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Hell</title>
+        <title>Restaurant of Group 8</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
@@ -10,13 +10,13 @@
         <br>
         <p> You are logged in as SATAN PRAISE SATAN</p>
         <div>  </div> -->
-        <form action="action_page.php" method="post">
+        <form id="myform">
             <div class="container">
-              <label for="uname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="uname" required>
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="email" id="email" required>
           
               <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required>
+              <input type="password" placeholder="Enter Password" name="psw" id="password" required>
           
               <button type="submit">Login</button>
               <label>
@@ -28,6 +28,35 @@
               <button type="button" class="cancelbtn">Cancel</button>
               <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
-          </form>
+        </form>
+        <script>
+            document.getElementById("myform").addEventListener("submit", function(event) {
+    event.preventDefault();
+    console.log("abc")
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    const apiUrl = 'http://localhost:3000/api/accounts';
+    const requestData = {
+        email: email,
+        password: password
+    };
+    
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error sending data:', error);
+    });
+    
+});
+        </script>
     </body>
 </html>
