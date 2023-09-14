@@ -17,7 +17,7 @@ function addReservation() {
 
         displayReservations();
     } else {
-        alert('Please enter valid customer name and table number.');
+        alert('Please enter customer name and table number.');
     }
 }
 
@@ -54,7 +54,7 @@ function editReservation(index) {
 
         displayReservations();
     } else {
-        alert('Please enter  customer name and table number.');
+        alert('Please enter customer name and table number.');
     }
 }
 
