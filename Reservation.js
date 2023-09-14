@@ -7,7 +7,8 @@ function addReservation() {
     if (customerName && !isNaN(tableNumber)) {
         const reservation = {
             customerName,
-            tableNumber
+            tableNumber,
+            dateTime: new Date().toLocaleString()
         };
 
         reservations.push(reservation);
@@ -27,7 +28,7 @@ function displayReservations() {
 
     reservations.forEach((reservation, index) => {
         const listItem = document.createElement('li');
-        listItem.innerHTML = `${reservation.customerName} - Table ${reservation.tableNumber}`;
+        listItem.innerHTML = `Customer: ${reservation.customerName}, Table: ${reservation.tableNumber}, Date/Time: ${reservation.dateTime}`;
         
         const editButton = document.createElement('button');
         editButton.innerText = 'Edit';
@@ -66,5 +67,7 @@ function deleteReservation(index) {
         displayReservations();
     }
 }
+
+document.getElementById('addReservationButton').addEventListener('click', addReservation);
 
 displayReservations();

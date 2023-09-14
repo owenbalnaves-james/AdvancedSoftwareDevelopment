@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation Management</title>
 </head>
 <body>
     <h1>Reservation Management</h1>
-    <div>
-        <h2>Add Reservation</h2>
-        <input type="text" id="customerName" placeholder="Customer Name">
-        <input type="number" id="tableNumber" placeholder="Table Number">
-        <button onclick="addReservation()">Add Reservation</button>
-    </div>
-    <div>
-        <h2>Reservations</h2>
-        <ul id="reservationList"></ul>
-    </div>
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName">
+    <label for="tableNumber">Table Number:</label>
+    <input type="number" id="tableNumber">
+    <button id="addReservationButton">Add Reservation</button>
+
+    <h2>Reservations</h2>
+    <ul id="reservationList"></ul>
 
     <script src="reservation.js"></script>
 </body>
