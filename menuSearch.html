@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>Restaurant of Group 8</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<style>
+    body {
+        background-color: linen;
+        margin-top: 88px;
+        margin-bottom: 88px;
+    }
+    name {
+        margin-bottom: 50px;
+        margin-top: -40px;
+    }
+    submitButton {
+        margin-right: 200px;
+    }
+
+</style>
+<body>
+    <form id="myform">
+        <div class="container">
+            <label for="name"><b>Item name:</b></label>
+            <input type="text" placeholder="Enter name" name="name" id="name" required>
+            <button type="submit">Search</button>
+        </div>
+    </form>
+    <script>
+        document.getElementById("myform").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var name = document.getElementById("name").value;
+            const apiUrl = 'http://localhost:3000/api/test';
+            const requestData = {
+                name: name,
+            };
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => {
+                    window.location.href = "menuResults.html";
+                })
+            .catch(error => {
+                console.error('Error sending data:', error);
+            });
+    
+});
+    </script>
+</body>
+
+</html>
