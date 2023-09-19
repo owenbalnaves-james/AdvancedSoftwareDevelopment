@@ -3,7 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const accountRoutes = require("./Routes/accounts")
-const menuItemsRoutes = require("./Routes/test")
 // const countriesRoutes = require("./routes/countries");
 // const placesRoutes = require("./routes/places")
 // const informationRoutes = require("./routes/information")
@@ -32,6 +31,5 @@ app.use((req, res, next) => {
     next();
   });
 
-  app.use("/api/test",menuItemsRoutes);
   app.use("/api/accounts",accountRoutes);
   module.exports = app;

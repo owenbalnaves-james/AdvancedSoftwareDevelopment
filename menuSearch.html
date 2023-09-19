@@ -34,7 +34,7 @@
         document.getElementById("myform").addEventListener("submit", function (event) {
             event.preventDefault();
             var name = document.getElementById("name").value;
-            const apiUrl = 'http://localhost:3000/api/test';
+            const apiUrl = 'http://localhost:3000/api/menuItems';
             const requestData = {
                 name: name,
             };
@@ -50,7 +50,7 @@
                     window.location.href = "menuResults.html";
                 })
             .catch(error => {
-                console.error('Error sending data:', error);
+                console.log('Error sending data:', error);
             });
     
 });
