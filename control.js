@@ -3,7 +3,7 @@ document.getElementById("myform").addEventListener("submit", function(event) {
     console.log("abc")
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    const apiUrl = 'http://localhost:3000/api/accounts';
+    const apiUrl = 'http://localhost:3000/api/menuItems';
     const requestData = {
         email: email,
         password: password
