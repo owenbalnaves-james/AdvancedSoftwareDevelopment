@@ -30,6 +30,5 @@ app.use((req, res, next) => {
     );
     next();
   });
-
-  app.use("/api/accounts",accountRoutes);
-  module.exports = app;
+app.use("/api/accounts",accountRoutes);
+module.exports = app;
