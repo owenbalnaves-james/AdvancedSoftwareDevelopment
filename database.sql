@@ -27,22 +27,23 @@ SET time_zone = "+00:00";
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `menuitems` (
   `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `user_name` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `Role` varchar(150) NOT NULL
+  `name` varchar(50) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `price` int(5) NOT NULL,
+  `pickupOnly` boolean NOT NULL,
+  `imageLink` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `menuitems` (`id`, `name`, `category`, `price`, `pickupOnly`) VALUES
-(1, 'Cabonara', 'Pastas', 23, 'false'),
-(2, 'Margarita', 'Pizzas', 25, 'true');
+INSERT INTO `menuitems` (`id`, `name`, `category`, `price`, `pickupOnly`, `imageLink`) VALUES
+(1, 'Cabonara', 'Pastas', 23, 'false','https://img.jamieoliver.com/jamieoliver/recipe-database/oldImages/large/1558_1_1436795948.jpg?tr=w-800,h-1066'),
+(2, 'Marghereita', 'Pizzas', 25, 'true','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/330px-Pizza_Margherita_stu_spivack.jpg'),
+(3, 'Marghereita with olives', 'Pizzas', 28, 'true','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/330px-Pizza_Margherita_stu_spivack.jpg');
 
 --
 -- Indexes for dumped tables
