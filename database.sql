@@ -43,7 +43,13 @@ CREATE TABLE `menuitems` (
 INSERT INTO `menuitems` (`id`, `name`, `category`, `price`, `pickupOnly`, `imageLink`) VALUES
 (1, 'Cabonara', 'Pastas', 23, 'false','https://img.jamieoliver.com/jamieoliver/recipe-database/oldImages/large/1558_1_1436795948.jpg?tr=w-800,h-1066'),
 (2, 'Marghereita', 'Pizzas', 25, 'true','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/330px-Pizza_Margherita_stu_spivack.jpg'),
-(3, 'Marghereita with olives', 'Pizzas', 28, 'true','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/330px-Pizza_Margherita_stu_spivack.jpg');
+(3, 'Marghereita with olives', 'Pizzas', 28, 'true','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/330px-Pizza_Margherita_stu_spivack.jpg'),
+(4, 'Meatlovers', 'Pizzas', 27, 'true','https://www.vincenzosplate.com/wp-content/uploads/2021/08/610x350-Photo-5_863-How-to-Make-MEATLOVERS-PIZZA-Like-an-Italian-V1.jpg'),
+(5, 'Garlic Bread', 'Entrees', 12, 'false', 'https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4-750x750.jpg'),
+(6, 'Italian Bruschetta', 'Entrees', 17, 'true', 'https://i0.wp.com/palatablepastime.com/wp-content/uploads/2021/10/Italian-Bruschetta-og.jpg?resize=768%2C401&ssl=1'),
+(7, 'Autumn Fritto Misto', 'Entrees', 19, 'true', 'https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f6a5428bebf_-_autumn-fritto-misto-recipe-fw1010-xl-xl.jpg?resize=980:*');
+
+
 
 --
 -- Indexes for dumped tables

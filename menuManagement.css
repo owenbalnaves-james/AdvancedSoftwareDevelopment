@@ -132,8 +132,7 @@ body, h1, h2, h3, p, ul, li {
   .search-button {
     position: absolute;
     right: -18%;
-    top: 33%;
-    transform: translateY(-50%);
+    top: 30%;
     background-color: #7aba9f;
     color: #fff;
     border: none;

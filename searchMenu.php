@@ -15,9 +15,11 @@
 <body>
 <section>
 <form action="searchMenu.php" method="POST" class="search-container">
+    <h2 for="html">Search our menu:</h2>
 	  <input class="search-input"  type="text" name="search_data" id="search_data" />
-    <input class="search-button" type="submit" value="Search" />
+    <input class="search-button" type="submit" value="Search"/>
     <br><br>
+    <h2 style="position:relative; left: 40%">OR</h2>
 </form>
 </section>
 
@@ -31,8 +33,7 @@
       $query = "select * from menuitems where name = '$search_data'";
       $result = mysqli_query($con,$query);
     }
-    else if ($_GET['link'] != null) {
-      
+    else if (isset($_GET['link']) && $_GET['link'] != null) {
       $l = $_GET['link'];
       if ($l == '1'){
         $query = "select * from menuitems where category = 'Entrees'";
@@ -43,15 +44,49 @@
       }else if ($l == '3') {
         $query = "select * from menuitems where category = 'Pastas'";
         $search_data = "Pastas";
-      }
-      else {
+      }else if ($l == '4') {
+        $query = "select * from menuitems where category = 'Salads'";
+        $search_data = "Pastas";
+      }else if ($l == '5') {
+        $query = "select * from menuitems where category = 'Desserts'";
+        $search_data = "Pastas";
+      }else {
         $query = "select * from menuitems where category = 'hhh'";
         $search_data = "hhh";
       }
 
       $result = mysqli_query($con,$query);
     }
+    else if (isset($_POST['task'])) {
+      $value = $_POST['task'];
 
+      $pID = $_POST['id'];
+      $iName = $_POST['name'];
+      $iCategory = $_POST['category'];
+      $iPrice = $_POST['price'];
+      $iPickupOnly = $_POST['pickupOnly'];
+      $iLink = $_POST["imageLink"]; 
+
+      if ($value == 'edit') {
+        $query = "update menuitems set name='$iName', category='$iCategory', price='$iPrice', pickupOnly='$iPickupOnly', imageLink='$iLink' where id = $pID;";
+        mysqli_query($con,$query);
+      }
+      else if ($value == 'create') {
+
+      }
+
+
+
+      Header('Location: '.$_SERVER['PHP_SELF']);//Reload page to set edit / create product changes
+      Exit();
+    }
+    else if (!isset($_POST['search_data']) || $_POST['search_data'] == null) {
+      $search_data = "";
+      $query = "select * from menuitems where name = ''";
+      $result = mysqli_query($con,$query);
+      
+    }
+    
     echo "<div class='outer-results-table'>";
     echo "<div class='results-table'>";
    
@@ -64,23 +99,23 @@
         if($result && mysqli_num_rows($result)> 0)
         {
           while($row = $result->fetch_assoc()) {
-            echo "<div> <h4>" . "<img src=" . ($row["imageLink"]) ." width=98% height=49% > <br> <br> " . 
+            echo "<div> <h4>" . "<img src=" . ($row["imageLink"]) ." width=98% height=40% > <br> <br> " . 
              " <b style='font-size: 25px;'> " . $row["name"] . "</b> <br> <br>" .
              "  <em> Price $ </em>" . $row["price"] . "<br>" 
              .  "</h4>" . "<br> </div>";
-
-            if (true) {//If user is not an employee, show produt profile page
+            if (false) {//If user is not an employee, show produt profile page
               echo "<form action='menu.php' method='POST'> 
-              <input class='c-btn' type='submit' name='productBtn' value='Go to Product Page'/>";
+              <input class='c-btn' type='submit' name='productBtn' value='Order'/>";
               echo "<input type='hidden' name='searchID' value='" . $row['id'] . "'/>";          
               echo "</form>";
             }
             else {//If user is an employee, show create product page + link to page to edit product
-              echo "<form action='productEdit.php' method='post'> " ;
-              echo "<input type='hidden' name='productID' id='productID' value='" . $row['id'] . "'/>
-              <input type='hidden' name='product_name' id='product_name' value='" . $row['name'] . "'/>
-              <input type='hidden' name='product_desc' id='product_desc' value='" . $row['category'] . "'/>
+              echo "<form action='menuItem.php' method='POST'> " ;
+              echo "<input type='hidden' name='id' id='id' value='" . $row['id'] . "'/>
+              <input type='hidden' name='name' id='name' value='" . $row['name'] . "'/>
+              <input type='hidden' name='category' id='category' value='" . $row['category'] . "'/>
               <input type='hidden' name='price' id='price' value='" . $row['price'] . "'/>
+              <input type='hidden' name='pickupOnly' id='pickupOnly' value='" . $row['pickupOnly'] . "'/>
               <input type='hidden' name='imageLink' id='imageLink' value='" . $row['imageLink'] . "'/>
               <input class='c-btn' type='submit' name='productBtn' value='Edit Menu Item'/>";
               echo "</form>";
@@ -90,11 +125,12 @@
               $_SESSION['imageLink'] = $row['imageLink'];
             }
           }
-          //echo "</div>";
         } 
         else {
           echo "<h4 class='subHeading'> No results found. </h4>";
         }
+        echo "<br><br><form action='menuItem.php' method='POST'> 
+        <input class='c-btn' type='submit' name='productBtn' value='Create Menu Item'/></form>";
       }
       echo "</div>";
       echo "</div>";
@@ -104,28 +140,43 @@
       echo "<div class='results-table'>";
       echo "<br><br><br><br><br>";
       echo "<h3> Delicious Italian Pizzas, Pastas, Salads and Desserts with special dietary options. </h3>";
-      echo "<br><br><br><br><br>";
+      echo "<br><br><form action='menuItem.php' method='POST'> 
+        <input class='c-btn' type='submit' name='productBtn' value='Create Menu Item'/></form>";
+      echo "<br>";
       echo "</div>";
       echo "</div>";
     }
 
-    
-    
-    function product_page() {
-      header("location: menu.php");
-      die;
-    } 
   ?>
 
     <div class="menu-categories"> 
-      <h1>Select By Category:</h1>
+      <h2>Select By Category:</h2>
       <div class="menu-categories-inner">
         <ul class="menu-categories-list">
-          <li><a href="searchMenu.php?link=1" name="link1">Entrees</a></li>
+          <li><a href="searchMenu.php?link=1">Entrees</a></li>
           <li><a href="searchMenu.php?link=2">Pizzas</a></li>
           <li><a href="searchMenu.php?link=3">Pastas</a></li>
+          <li><a href="searchMenu.php?link=4">Salads</a></li>
+          <li><a href="searchMenu.php?link=5">Desserts</a></li>
         </ul>
         <?php echo "<br><br><a href=listAllProducts.php class='c-btn' style='margin-left:20px; margin-bottom:10px;'>View Whole Menu</a>"; ?>
       </div>
     </div>
 </body>
+
+<script>//page only updates after a reload so fore a reload once upon navigating to page
+  
+  window.addEventListener( "pageshow", function ( event ) {
+  var historyTraversal = event.persisted || 
+                        (typeof window.performance == "undefined" ||
+                              window.performance.navigation.type == 2);
+  if ( historyTraversal) {
+    // Handle page restore.
+    window.location.reload();
+  }
+  });
+  if ( document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php') {
+    window.location.reload();
+  }
+  
+</script>
