@@ -1,12 +1,14 @@
 **Project Title:**
 Group8 Restaurant  
 **Project Description**  
-<pre
+<pre>
   The website is a basic restaurant management system with some simple features, such as:  
 	Login / Log out  
 	Menu management  
 	Make reservation  
+</pre>
 **How to Run and Install the Project**    
+<pre>
 	install library  
 		npm init  
 		npm install  
