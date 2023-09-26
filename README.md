@@ -1,23 +1,19 @@
 **Project Title:**
 Group8 Restaurant  
 **Project Description**  
-<pre>
-  The website is a basic restaurant management system with some simple features, such as:  
-	Login / Log out  
-	Menu management  
-	Make reservation  
-</pre>
+The website is a basic restaurant management system with some simple features, such as:  
+&nbsp; &nbsp; &nbsp; &nbsp;  Login / Log out  
+&nbsp;	&nbsp; &nbsp;  &nbsp; Menu management  
+&nbsp; &nbsp; &nbsp; &nbsp; Make reservation  
 **How to Run and Install the Project**    
-<pre>
-	install library  
-		npm init  
-		npm install  
-		npm install express mongodb mongoose body-parser nodemon  
+&nbsp; &nbsp; &nbsp; &nbsp;	install library  
+&nbsp; &nbsp; &nbsp; &nbsp;		npm init  
+	&nbsp; &nbsp; &nbsp; &nbsp;	npm install  
+	&nbsp; &nbsp; &nbsp; &nbsp;	npm install express mongodb mongoose body-parser nodemon  
 	run server  
-		nodemon server.js or noder server.js  
+	&nbsp; &nbsp; &nbsp; &nbsp;	nodemon server.js or noder server.js  
 	run website  
-	index.html on browser  
+	&nbsp; &nbsp; &nbsp; &nbsp; index.html on browser  
 	
-</pre>
 
 	
