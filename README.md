@@ -1,5 +1,4 @@
-Project Title:  
-#Heading 1  
+**Project Title:**  
 Group8 Restaurant  
 Project Description  
 The website is a basic restaurant management system with some simple features, such as:  
