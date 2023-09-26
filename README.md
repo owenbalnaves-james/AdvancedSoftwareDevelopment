@@ -1,3 +1,4 @@
+<pre>
 **Project Title:**  
 Group8 Restaurant  
 **Project Description**  
@@ -14,4 +15,7 @@ Group8 Restaurant
 		nodemon server.js or noder server.js  
 	run website  
 	index.html on browser  
+	
+</pre>
+
 	
