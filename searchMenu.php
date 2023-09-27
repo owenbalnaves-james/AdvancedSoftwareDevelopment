@@ -23,9 +23,52 @@
 </form>
 </section>
 
-<?php 
+<?php  
   $_SESSION['doQuery'] = false;
-  if($_SERVER['REQUEST_METHOD'] == "POST" || isset($_GET['link']))
+  if (isset($_POST['task'])) {
+    $value = $_POST['task'];
+
+    $pID = $_POST['id'];
+
+    if ($value == 'edit' || $value == 'create') {
+      $iName = $_POST['name'];
+      $iCategory = $_POST['category'];
+      $iPrice = $_POST['price'];
+      $iPickupOnly = $_POST['pickupOnly'];
+      $iLink = $_POST["imageLink"]; 
+
+      if ($value == 'edit') {
+        $query = "update menuitems set name='$iName', category='$iCategory', price='$iPrice', pickupOnly='$iPickupOnly', imageLink='$iLink' where id = $pID;";
+        mysqli_query($con,$query);
+
+        echo "<h3>Product edited.</h3>";
+      }
+      else if ($value == 'create') {
+        $product_id = 34;
+
+        $query = "insert into menuitems (id,name,category,price,pickupOnly,imageLink) values ('$pID','$iName','$iCategory','$iPrice', '$iPickupOnly','$iLink')";
+        mysqli_query($con,$query);
+
+        echo "<h3>New product added.</h3>";
+      }
+    }
+    else if ($value == 'delete') {
+      $query = "delete from menuitems where id='$pID';";
+      mysqli_query($con,$query);
+      echo "<h3>Product deleted.</h3>";
+    }
+
+    echo "<div class='outer-results-table'>";
+    echo "<div class='results-table'>";
+    echo "<br><br><br><br><br>";
+    echo "<h3> Delicious Italian Pizzas, Pastas, Salads and Desserts with special dietary options. </h3>";
+    echo "<br><br><form action='menuItem.php' method='POST'> 
+      <input class='c-btn' type='submit' name='productBtn' value='Create Menu Item'/></form>";
+    echo "<br>";
+    echo "</div>";
+    echo "</div>";
+  }
+  else if($_SERVER['REQUEST_METHOD'] == "POST" || isset($_GET['link']))
   {
     if (isset($_POST['search_data']) && $_POST['search_data'] != null) {
       $search_data = $_POST['search_data'];
@@ -54,31 +97,7 @@
         $query = "select * from menuitems where category = 'hhh'";
         $search_data = "hhh";
       }
-
       $result = mysqli_query($con,$query);
-    }
-    else if (isset($_POST['task'])) {
-      $value = $_POST['task'];
-
-      $pID = $_POST['id'];
-      $iName = $_POST['name'];
-      $iCategory = $_POST['category'];
-      $iPrice = $_POST['price'];
-      $iPickupOnly = $_POST['pickupOnly'];
-      $iLink = $_POST["imageLink"]; 
-
-      if ($value == 'edit') {
-        $query = "update menuitems set name='$iName', category='$iCategory', price='$iPrice', pickupOnly='$iPickupOnly', imageLink='$iLink' where id = $pID;";
-        mysqli_query($con,$query);
-      }
-      else if ($value == 'create') {
-        $product_id = 34;
-
-        $query = "insert into menuitems (id,name,category,price,pickupOnly,imageLink) values ('$pID','$iName','$iCategory','$iPrice', '$iPickupOnly','$iLink')";
-        mysqli_query($con,$query);
-      }
-      Header('Location: '.$_SERVER['PHP_SELF']);//Reload page to set edit / create product changes
-      Exit();
     }
     else if (!isset($_POST['search_data']) || $_POST['search_data'] == null) {
       $search_data = "";
@@ -146,7 +165,6 @@
       echo "</div>";
       echo "</div>";
     }
-
   ?>
 
     <div class="menu-categories"> 

@@ -56,9 +56,10 @@
 <div class="main-content" style="text-align:center; padding:20px;">
       <div id="box">
         <form method="POST" action='searchMenu.php'>
-        <div class="btn-block">
+        
         <a href="searchMenu.php" style="color:gray; top:180px; left: 18px; position:absolute;">Back<br><br></a>
       </div>
+      <div class="btn-block">
         <div class=""><h3><?php echo "$formHeader" . $name;?></h3><br><br></div>
         <label id="icon" for="name"><i class="input"> Name:  </i></label>
         <input type="text" name="name" id="name" value="<?php echo $name;?>" required/>
@@ -85,19 +86,29 @@
 
         <input type='hidden' name='task' id='task' value="<?php echo $value;?>"/>
         <br><br><br>
-      </div class='input'>
-        <div >
+      </div>
+        <div>
           <input class="c-btn"id="button" type="submit" value="<?php echo "$submitValue"; ?>"><br><br>
         </div>
       </form>
     </div>
+    <?php
+    if (isset($_POST['id'])) {
+      echo "
+        <div class='main-block' style='text-align:center; padding:20px;'>
+        <div id='box'>
+          <form method='post' action='searchMenu.php'>
+          <input type='hidden' name='id' id='id' value=" . "$pID" . "/>
+          <input type='hidden' name='task' id='task' value= 'delete'/>
+          <input class='c-btn'id='button' type='submit' value='delete'>
+          <br><br>
+          </div>
+        </form>
+      </div>
+      ";
+    }
+    ?>
+    
 
-    <div class="main-block" style="text-align:center; padding:20px;">
-      <div id="box">
-        <form method="post" action='searchMenu.php'>
-        <input type='hidden' name='id' id='id' value="<?php echo "$pID";?>"/>
-        <input class="c-btn"id="button" type="submit" value="Delete"><br><br>
-        </div>
-      </form>
-    </div>
+
     <br><br><br><br><br>
