@@ -2,7 +2,7 @@
 <header>
   <h1>Online Menu</h1>
   <?php
-    session_cache_limiter('private_no_expire');
+    //session_cache_limiter('private_no_expire');
     session_start();
     
     include("connection.php");
@@ -46,10 +46,10 @@
         $search_data = "Pastas";
       }else if ($l == '4') {
         $query = "select * from menuitems where category = 'Salads'";
-        $search_data = "Pastas";
+        $search_data = "Salads";
       }else if ($l == '5') {
         $query = "select * from menuitems where category = 'Desserts'";
-        $search_data = "Pastas";
+        $search_data = "Desserts";
       }else {
         $query = "select * from menuitems where category = 'hhh'";
         $search_data = "hhh";
@@ -72,11 +72,11 @@
         mysqli_query($con,$query);
       }
       else if ($value == 'create') {
+        $product_id = 34;
 
+        $query = "insert into menuitems (id,name,category,price,pickupOnly,imageLink) values ('$pID','$iName','$iCategory','$iPrice', '$iPickupOnly','$iLink')";
+        mysqli_query($con,$query);
       }
-
-
-
       Header('Location: '.$_SERVER['PHP_SELF']);//Reload page to set edit / create product changes
       Exit();
     }
@@ -164,19 +164,30 @@
     </div>
 </body>
 
+
+
+
+
+
 <script>//page only updates after a reload so fore a reload once upon navigating to page
-  
+  /* 
   window.addEventListener( "pageshow", function ( event ) {
   var historyTraversal = event.persisted || 
                         (typeof window.performance == "undefined" ||
                               window.performance.navigation.type == 2);
   if ( historyTraversal) {
     // Handle page restore.
-    window.location.reload();
+     window.location.reload();
   }
   });
-  if ( document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php') {
-    window.location.reload();
+  if ( document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=1'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=2'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=3'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=4'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=5'
+    ) {
+     window.location.reload();
   }
-  
+  */
 </script>

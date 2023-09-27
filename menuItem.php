@@ -63,8 +63,14 @@
         <label id="icon" for="name"><i class="input"> Name:  </i></label>
         <input type="text" name="name" id="name" value="<?php echo $name;?>" required/>
 
-        <label id="icon" for="name"><i class="input">Category: </i></label>
-        <input style="height:100px;" type="text" name="category" id="category" value="<?php echo $category;?>" required/>
+        <label for="name">Choose a category</label> 
+          <select name="category" id="category"> 
+              <option value="Entrees">Entrees</option> 
+              <option value="Pizzas">Pizzas</option> 
+              <option value="Pastas">Pastas</option> 
+              <option value="Salads">Salads</option> 
+              <option value="Desserts">Desserts</option> 
+          </select>
 
         <label id="icon" for="name"><i class="input">Price:  </i></label>
         <input type="number" name="price" id="price" value="<?php echo $price;?>" required/>
@@ -88,9 +94,9 @@
 
     <div class="main-block" style="text-align:center; padding:20px;">
       <div id="box">
-        <form method="post" action='productDeleted.php'>
-        <input type='hidden' name='productID' id='productID' value="<?php echo "$pID";?>"/>
-        <input class="c-btn"id="button" type="submit" value="Delete product"><br><br>
+        <form method="post" action='searchMenu.php'>
+        <input type='hidden' name='id' id='id' value="<?php echo "$pID";?>"/>
+        <input class="c-btn"id="button" type="submit" value="Delete"><br><br>
         </div>
       </form>
     </div>
