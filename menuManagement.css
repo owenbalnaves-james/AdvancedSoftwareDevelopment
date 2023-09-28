@@ -148,17 +148,30 @@ body, h1, h2, h3, p, ul, li {
 
   .results-table {
     width:93%;
-    background-color: #746e6e;    
+    background-color: #b4aaaa;    
     padding: 10px;
     background-image: url('https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-
+    background-size: cover;
+    background-repeat:round;
   }
 
   .outer-results-table {
     width: 25%;
     float: left;
-    background-color: #bda3a3;    
+    background-color: #bdafa3;    
     padding: 10px;
+  }
+
+  .whole-menu-table {
+    background-color: #533518;    
+    padding: 10px;
+    column-count: 3;
+    column-span: all;
+  }
+
+  .whole-menu-column {
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .menu-categories {

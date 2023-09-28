@@ -177,7 +177,7 @@
           <li><a href="searchMenu.php?link=4">Salads</a></li>
           <li><a href="searchMenu.php?link=5">Desserts</a></li>
         </ul>
-        <?php echo "<br><br><a href=listAllProducts.php class='c-btn' style='margin-left:20px; margin-bottom:10px;'>View Whole Menu</a>"; ?>
+        <?php echo "<br><br><a href=wholeMenu.php class='c-btn' style='margin-left:20px; margin-bottom:10px;'>View Whole Menu</a>"; ?>
       </div>
     </div>
 </body>
