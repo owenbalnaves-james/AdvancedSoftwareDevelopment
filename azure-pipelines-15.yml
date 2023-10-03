@@ -20,7 +20,7 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: Node
+- task: NodeTool@1
   displayName: 'Run unit tests - $(buildConfiguration)'
   inputs:
     command: 'test'
