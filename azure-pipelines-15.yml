@@ -21,10 +21,10 @@ steps:
   displayName: 'npm install and build'
 
   task: DotNetCoreCLI@2
-  displayName: 'Publish the project - (buildConfiguration)'
+  displayName: 'Run unit tests - $(buildConfiguration)'
   inputs:
     command: 'test'
     arguments: '--nobuild --configuration $(buildConfiguration)'
     publishTestResults: true 
-    projects: '/*.Tests.csproj'
+    projects: '*.Tests.csproj'
 
