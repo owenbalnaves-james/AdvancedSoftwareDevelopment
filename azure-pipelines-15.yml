@@ -26,5 +26,5 @@ steps:
     command: 'test'
     arguments: '--nobuild --configuration $(buildConfiguration)'
     publishTestResults: true 
-    projects: '*.Tests.csproj'
+    projects: '*.Tests.*'
 
