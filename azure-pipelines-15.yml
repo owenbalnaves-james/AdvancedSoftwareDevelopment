@@ -26,7 +26,7 @@ steps:
     command: 'test'
     arguments: '--nobuild --configuration $(buildConfiguration)'
     publishTestResults: true 
-    testResultsFiles: '*.tests.*'
+    testResultsFiles: '*.tests.xml'
 
 - script: ./phpunit
   displayName: 'Run tests with phpunit'
