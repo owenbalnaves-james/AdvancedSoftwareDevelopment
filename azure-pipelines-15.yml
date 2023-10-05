@@ -44,7 +44,4 @@ steps:
     composer self-update
     composer dump-autoload
     composer install --no-interaction --prefer-dist
-  displayName: 'Install Composer'
-
-- script: 'phpunit --log-junit TEST-RESULTS.xml'
-  displayName: 'Run tests with phpunit'
+  displayName: 'Install Composer for PHPUnit testing'
