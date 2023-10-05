@@ -28,5 +28,6 @@ steps:
     publishTestResults: true 
     testResultsFiles: '*.tests.xml'
 
-- script: './phpunit'
+- script: | 
+    ./phpunit
   displayName: 'Run tests with phpunit'
