@@ -28,5 +28,5 @@ steps:
     publishTestResults: true 
     testResultsFiles: '*.tests.*'
 
-script: ./phpunit
+- script: ./phpunit
   displayName: 'Run tests with phpunit'
