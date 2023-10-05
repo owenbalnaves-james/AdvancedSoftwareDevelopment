@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: windows-latest
 
+variables:
+  phpVersion: 7.2
+
 steps:
 - task: NodeTool@0
   inputs:
