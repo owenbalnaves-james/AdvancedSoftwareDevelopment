@@ -10,7 +10,7 @@ pool:
   vmImage: windows-latest
 
 variables:
-  phpVersion: 7.2
+  phpVersion: 8.2.11
 
 steps:
 - task: NodeTool@0
