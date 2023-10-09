@@ -10,7 +10,7 @@ pool:
   vmImage: windows-latest
 
 variables:
-  phpVersion: 7.2
+  phpVersion: 8.2.11
 
 steps:
 - task: NodeTool@0
@@ -49,3 +49,6 @@ steps:
     composer dump-autoload
     composer install --no-interaction --prefer-dist
   displayName: 'Install Composer for PHPUnit testing'
+
+- script: ./phpunit
+  displayName: 'Run tests with phpunit'
