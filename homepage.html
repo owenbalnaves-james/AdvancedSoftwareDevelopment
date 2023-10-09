@@ -23,10 +23,14 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="minion.png" alt="User Avatar" class="rounded-circle" width="30" height="30"> Lam Tran
+                        <div style="display: flex;"> 
+                            <img src="minion.png" alt="User Avatar" class="rounded-circle" width="30" height="30"> 
+                            <p id="name"></p>
+                        </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" id="logoutBtn" href="index.html">Logout</a></li>
+                        <li><a class="dropdown-item" id="logoutBtn" href="userInformation.html">Information</a></li>
+                        <li><a class="dropdown-item" id="logoutBtn" href="index.html" onclick="logout()">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -98,5 +102,17 @@
             </div>
         </div>
     </footer>
+    <script>
+        function logout() {
+            localStorage.removeItem('email')
+            localStorage.removeItem('name')
+        }
+        function display() {
+            console.log(localStorage.getItem('name'));
+            document.getElementById("name").textContent = localStorage.getItem("name");
+
+        }
+        window.addEventListener("load", display())
+    </script>
 </body>
 </html>

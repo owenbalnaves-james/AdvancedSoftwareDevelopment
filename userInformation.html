@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <title>Restaurant of Group 8</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <form id="myform">
+      <div class="container">
+        <!-- <label for="email"><b>Email</b></label>
+            <input type="email" name="email" id="email"> -->
+
+        <label for="email"><b>Email</b></label>
+        <input
+          type="text"
+          placeholder="Enter email number"
+          name="email"
+          id="email"
+          readonly
+        />
+
+        <label for="phone"><b>Phone</b></label>
+        <input
+          type="text"
+          placeholder="Enter phone number"
+          name="phone"
+          id="phone"
+          required
+        />
+
+        <label for="name"><b>Name</b></label>
+        <input
+          type="text"
+          placeholder="Enter Your Name"
+          name="name"
+          id="name"
+          required
+        />
+
+        <label for="cardNumber"><b>Card Number</b></label>
+        <input
+          type="text"
+          placeholder="Enter Your Card Number"
+          name="card"
+          id="card"
+          required
+        />
+
+        <label for="address"><b>Address</b></label>
+        <input
+          type="text"
+          placeholder="Enter Your Address"
+          name="address"
+          id="address"
+          required
+        />
+
+        <button type="submit">Update</button>
+        <button onclick="deleteAccount()">Delete Account</button>
+      </div>
+    </form>
+    <script>
+      document
+        .getElementById("myform")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          console.log("abc");
+          var email = document.getElementById("email").value;
+          var phone = document.getElementById("phone").value;
+          var name = document.getElementById("name").value;
+          var cardNumber = document.getElementById("card").value;
+          var address = document.getElementById("address").value;
+          const apiUrl = "http://localhost:3000/api/accounts/update-information";
+          const requestData = {
+            email: email,
+            phone: phone,
+            name: name,
+            cardNumber: cardNumber,
+            address: address,
+          };
+          fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestData),
+          })
+            .then((response) => {
+              window.location.href = "homepage.html";
+            })
+            .catch((error) => {
+              console.error("Error sending data:", error);
+            });
+        });
+      function getData() {
+        fetch("http://localhost:3000/api/accounts/get-data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: localStorage.getItem("email") }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data.email)
+            document.getElementById("email").value = data.email;
+            document.getElementById("phone").value = data.phone;
+            document.getElementById("name").value = data.name;
+            document.getElementById("card").value = data.cardNumber;
+            document.getElementById("address").value = data.address;
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          });
+      }
+      function deleteAccount() {
+        fetch("http://localhost:3000/api/accounts/delete", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: localStorage.getItem("email") }),
+        })
+          .then((response) => {
+            window.location.href = "index.html";
+          })
+      }
+      window.addEventListener("load", getData());
+    </script>
+  </body>
+</html>
