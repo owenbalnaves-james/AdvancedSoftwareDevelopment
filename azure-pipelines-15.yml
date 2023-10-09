@@ -23,6 +23,10 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
+- script: |
+    npm test
+  displayName: 'Run unit tests'
+
 - task: PublishTestResults@2
   displayName: 'Run unit tests - $(buildConfiguration)'
   inputs:
