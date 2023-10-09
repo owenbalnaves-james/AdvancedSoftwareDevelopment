@@ -45,3 +45,6 @@ steps:
     composer dump-autoload
     composer install --no-interaction --prefer-dist
   displayName: 'Install Composer for PHPUnit testing'
+
+- script: ./phpunit
+  displayName: 'Run tests with phpunit'

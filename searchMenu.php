@@ -1,12 +1,12 @@
 
 <header>
   <h1>Online Menu</h1>
+
   <?php
     //session_cache_limiter('private_no_expire');
     session_start();
     
     include("connection.php");
-    //include("functions.php");
   ?>
   <link rel="stylesheet" href="menuManagement.css">
   <a href="homepage.html">Home</a>
@@ -27,7 +27,6 @@
   $_SESSION['doQuery'] = false;
   if (isset($_POST['task'])) {
     $value = $_POST['task'];
-
     $pID = $_POST['id'];
 
     if ($value == 'edit' || $value == 'create') {

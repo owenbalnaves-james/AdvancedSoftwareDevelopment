@@ -1,8 +1,9 @@
 <header class="c-header">
   <h1>Editing Menu</h1>
   <p></p>
-  
 </header>
+
+<body>
 <div class="background">
 <section class="c-posts">
 <div class="new1">
@@ -108,7 +109,5 @@
       ";
     }
     ?>
-    
-
-
     <br><br><br><br><br>
+  </body>
