@@ -34,7 +34,7 @@
   else {
 
   }
-
+  //consider maybe separate page for employee viewing / approving events? Just so page doesn't get too complexs
 
 ?>
 
