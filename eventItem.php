@@ -18,23 +18,33 @@
   session_cache_limiter('private_no_expire');
   session_start();  
 
-  if (isset($_POST['id'])) {
+  if (!isset($_POST['id'])) {//event ID
     $name = "";
     $numAtendees = "";
     $date = 0;
     $description = "";
-    $eventID = $_POST['ID'];
+    $organiserID = $_POST['customerID'];
+
+    $value = "create";
+
+    $submitValue = "Save Changes";
+    $formHeader = "Create Event: ";
+  }
+  else {
+    $name = $_POST['name'];
+    $numAtendees = $_POST['numAtendees'];
+    $date = $_POST['date'];
+    $description = $_POST['description'];
     $organiserID = $_POST['customerID'];
 
     $value = "edit";
 
     $submitValue = "Save Changes";
-    $formHeader = "Create New Dish: ";
+    $formHeader = "Edit event: ";
   }
-  else {
 
-  }
-  //consider maybe separate page for employee viewing / approving events? Just so page doesn't get too complexs
+
+  
 
 ?>
 

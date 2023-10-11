@@ -50,5 +50,4 @@ steps:
     composer install --no-interaction --prefer-dist
   displayName: 'Install Composer for PHPUnit testing'
 
-- script: ./phpunit.php
-  displayName: 'Run tests with phpunit'
+

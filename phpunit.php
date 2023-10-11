@@ -4,7 +4,6 @@ function testRemoveFavoriteMovie()
 {
     include("connection.php");
 
-    $search_data = "";
     $query = "select * from menuitems";
     $result = mysqli_query($con,$query);
     
