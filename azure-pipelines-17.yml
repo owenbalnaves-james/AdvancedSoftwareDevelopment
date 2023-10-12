@@ -25,5 +25,5 @@ steps:
     displayName: 'Install Dependencies'
 
 - script: |
-    npm test tests/update-information.test.js
+    npx mocha tests/update-information.test.js --require esm
     displayName: 'Run Unit Tests'
