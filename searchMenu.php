@@ -1,12 +1,12 @@
 
 <header>
   <h1>Online Menu</h1>
+
   <?php
-    session_cache_limiter('private_no_expire');
+    //session_cache_limiter('private_no_expire');
     session_start();
     
     include("connection.php");
-    //include("functions.php");
   ?>
   <link rel="stylesheet" href="menuManagement.css">
   <a href="homepage.html">Home</a>
@@ -23,9 +23,51 @@
 </form>
 </section>
 
-<?php 
+<?php  
   $_SESSION['doQuery'] = false;
-  if($_SERVER['REQUEST_METHOD'] == "POST" || isset($_GET['link']))
+  if (isset($_POST['task'])) {
+    $value = $_POST['task'];
+    $pID = $_POST['id'];
+
+    if ($value == 'edit' || $value == 'create') {
+      $iName = $_POST['name'];
+      $iCategory = $_POST['category'];
+      $iPrice = $_POST['price'];
+      $iPickupOnly = $_POST['pickupOnly'];
+      $iLink = $_POST["imageLink"]; 
+
+      if ($value == 'edit') {
+        $query = "update menuitems set name='$iName', category='$iCategory', price='$iPrice', pickupOnly='$iPickupOnly', imageLink='$iLink' where id = $pID;";
+        mysqli_query($con,$query);
+
+        echo "<h3>Product edited.</h3>";
+      }
+      else if ($value == 'create') {
+        $product_id = 34;
+
+        $query = "insert into menuitems (id,name,category,price,pickupOnly,imageLink) values ('$pID','$iName','$iCategory','$iPrice', '$iPickupOnly','$iLink')";
+        mysqli_query($con,$query);
+
+        echo "<h3>New product added.</h3>";
+      }
+    }
+    else if ($value == 'delete') {
+      $query = "delete from menuitems where id='$pID';";
+      mysqli_query($con,$query);
+      echo "<h3>Product deleted.</h3>";
+    }
+
+    echo "<div class='outer-results-table'>";
+    echo "<div class='results-table'>";
+    echo "<br><br><br><br><br>";
+    echo "<h3> Delicious Italian Pizzas, Pastas, Salads and Desserts with special dietary options. </h3>";
+    echo "<br><br><form action='menuItem.php' method='POST'> 
+      <input class='c-btn' type='submit' name='productBtn' value='Create Menu Item'/></form>";
+    echo "<br>";
+    echo "</div>";
+    echo "</div>";
+  }
+  else if($_SERVER['REQUEST_METHOD'] == "POST" || isset($_GET['link']))
   {
     if (isset($_POST['search_data']) && $_POST['search_data'] != null) {
       $search_data = $_POST['search_data'];
@@ -46,39 +88,15 @@
         $search_data = "Pastas";
       }else if ($l == '4') {
         $query = "select * from menuitems where category = 'Salads'";
-        $search_data = "Pastas";
+        $search_data = "Salads";
       }else if ($l == '5') {
         $query = "select * from menuitems where category = 'Desserts'";
-        $search_data = "Pastas";
+        $search_data = "Desserts";
       }else {
         $query = "select * from menuitems where category = 'hhh'";
         $search_data = "hhh";
       }
-
       $result = mysqli_query($con,$query);
-    }
-    else if (isset($_POST['task'])) {
-      $value = $_POST['task'];
-
-      $pID = $_POST['id'];
-      $iName = $_POST['name'];
-      $iCategory = $_POST['category'];
-      $iPrice = $_POST['price'];
-      $iPickupOnly = $_POST['pickupOnly'];
-      $iLink = $_POST["imageLink"]; 
-
-      if ($value == 'edit') {
-        $query = "update menuitems set name='$iName', category='$iCategory', price='$iPrice', pickupOnly='$iPickupOnly', imageLink='$iLink' where id = $pID;";
-        mysqli_query($con,$query);
-      }
-      else if ($value == 'create') {
-
-      }
-
-
-
-      Header('Location: '.$_SERVER['PHP_SELF']);//Reload page to set edit / create product changes
-      Exit();
     }
     else if (!isset($_POST['search_data']) || $_POST['search_data'] == null) {
       $search_data = "";
@@ -146,7 +164,6 @@
       echo "</div>";
       echo "</div>";
     }
-
   ?>
 
     <div class="menu-categories"> 
@@ -159,24 +176,35 @@
           <li><a href="searchMenu.php?link=4">Salads</a></li>
           <li><a href="searchMenu.php?link=5">Desserts</a></li>
         </ul>
-        <?php echo "<br><br><a href=listAllProducts.php class='c-btn' style='margin-left:20px; margin-bottom:10px;'>View Whole Menu</a>"; ?>
+        <?php echo "<br><br><a href=wholeMenu.php class='c-btn' style='margin-left:20px; margin-bottom:10px;'>View Whole Menu</a>"; ?>
       </div>
     </div>
 </body>
 
+
+
+
+
+
 <script>//page only updates after a reload so fore a reload once upon navigating to page
-  
+  /* 
   window.addEventListener( "pageshow", function ( event ) {
   var historyTraversal = event.persisted || 
                         (typeof window.performance == "undefined" ||
                               window.performance.navigation.type == 2);
   if ( historyTraversal) {
     // Handle page restore.
-    window.location.reload();
+     window.location.reload();
   }
   });
-  if ( document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php') {
-    window.location.reload();
+  if ( document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=1'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=2'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=3'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=4'
+    && document.referrer != 'http://localhost/dashboard/advancedsoftwaredevelopment/searchMenu.php?link=5'
+    ) {
+     window.location.reload();
   }
-  
+  */
 </script>

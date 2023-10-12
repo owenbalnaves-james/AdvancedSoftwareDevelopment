@@ -1,8 +1,9 @@
 <header class="c-header">
   <h1>Editing Menu</h1>
   <p></p>
-  
 </header>
+
+<body>
 <div class="background">
 <section class="c-posts">
 <div class="new1">
@@ -56,15 +57,22 @@
 <div class="main-content" style="text-align:center; padding:20px;">
       <div id="box">
         <form method="POST" action='searchMenu.php'>
-        <div class="btn-block">
+        
         <a href="searchMenu.php" style="color:gray; top:180px; left: 18px; position:absolute;">Back<br><br></a>
       </div>
+      <div class="btn-block">
         <div class=""><h3><?php echo "$formHeader" . $name;?></h3><br><br></div>
         <label id="icon" for="name"><i class="input"> Name:  </i></label>
         <input type="text" name="name" id="name" value="<?php echo $name;?>" required/>
 
-        <label id="icon" for="name"><i class="input">Category: </i></label>
-        <input style="height:100px;" type="text" name="category" id="category" value="<?php echo $category;?>" required/>
+        <label for="name">Choose a category</label> 
+          <select name="category" id="category"> 
+              <option value="Entrees">Entrees</option> 
+              <option value="Pizzas">Pizzas</option> 
+              <option value="Pastas">Pastas</option> 
+              <option value="Salads">Salads</option> 
+              <option value="Desserts">Desserts</option> 
+          </select>
 
         <label id="icon" for="name"><i class="input">Price:  </i></label>
         <input type="number" name="price" id="price" value="<?php echo $price;?>" required/>
@@ -79,19 +87,27 @@
 
         <input type='hidden' name='task' id='task' value="<?php echo $value;?>"/>
         <br><br><br>
-      </div class='input'>
-        <div >
+      </div>
+        <div>
           <input class="c-btn"id="button" type="submit" value="<?php echo "$submitValue"; ?>"><br><br>
         </div>
       </form>
     </div>
-
-    <div class="main-block" style="text-align:center; padding:20px;">
-      <div id="box">
-        <form method="post" action='productDeleted.php'>
-        <input type='hidden' name='productID' id='productID' value="<?php echo "$pID";?>"/>
-        <input class="c-btn"id="button" type="submit" value="Delete product"><br><br>
-        </div>
-      </form>
-    </div>
+    <?php
+    if (isset($_POST['id'])) {
+      echo "
+        <div class='main-block' style='text-align:center; padding:20px;'>
+        <div id='box'>
+          <form method='post' action='searchMenu.php'>
+          <input type='hidden' name='id' id='id' value=" . "$pID" . "/>
+          <input type='hidden' name='task' id='task' value= 'delete'/>
+          <input class='c-btn'id='button' type='submit' value='delete'>
+          <br><br>
+          </div>
+        </form>
+      </div>
+      ";
+    }
+    ?>
     <br><br><br><br><br>
+  </body>

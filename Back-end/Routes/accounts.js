@@ -1,11 +1,13 @@
+const { response } = require("express");
 const express = require("express");
+const account = require("../models/account");
 const Account = require("../models/account");
 const router = express.Router();
 router.post("", (req,res,next)=>{
     const {email, password} = req.body;
     Account.findOne({email,password}).then(userValid=>{
         if(userValid){
-            res.status(200).json({message: "Login Successfully"});
+            res.status(200).send(userValid);
         }
     });
 })
@@ -16,5 +18,41 @@ router.post("/resetpassword",(req,res,next) => {
             message:"Update Successfully"
         })
     }).catch(err => console.log(err))
+})
+router.post("/create",(req,res,next) => {
+    const {email, password} = req.body;
+    console.log(req.body)
+    const account = new Account({
+        email : email,
+        password : password,
+    })
+    account.save().then(result => {
+        res.status(200).json({
+            message:"Create account successfully"
+        })
+    })
+})
+router.post("/update-information",(req,res,next) => {
+    const {phone, name, cardNumber, address} = req.body;
+    console.log(req.body)
+    Account.findOneAndUpdate({email: req.body.email}, req.body).then(response => {
+        res.status(200).send(response)
+    }).catch(err => {
+        res.status(400).send(err)
+    })
+})
+router.post("/get-data", (req,res,next) => {
+    Account.findOne({email: req.body.email}).then(response => {
+        res.status(200).send(response)
+    }).catch(err => {
+        res.status(400).send(err)
+    })
+})
+router.post("/delete", (req,res,next) => {
+    Account.deleteOne({email: req.body.email}).then(response => {
+        res.status(200).send(response)
+    }).catch(err => {
+        res.status(400).send(err)
+    })
 })
 module.exports = router;

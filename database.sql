@@ -49,7 +49,27 @@ INSERT INTO `menuitems` (`id`, `name`, `category`, `price`, `pickupOnly`, `image
 (6, 'Italian Bruschetta', 'Entrees', 17, 'true', 'https://i0.wp.com/palatablepastime.com/wp-content/uploads/2021/10/Italian-Bruschetta-og.jpg?resize=768%2C401&ssl=1'),
 (7, 'Autumn Fritto Misto', 'Entrees', 19, 'true', 'https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f6a5428bebf_-_autumn-fritto-misto-recipe-fw1010-xl-xl.jpg?resize=980:*');
 
+CREATE TABLE `events` (
+  `eventID` bigint(20) NOT NULL,
+  `organiserID` bigint(20) NOT NULL,
+  `name` VARCHAR(180) NOT NULL,
+  `numAtendees` bigint(20) NOT NULL,
+  `date` varchar(100) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `specialRequestsID` bigint(20) NOT NULL,
+  `approved` bigint(2) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `specialRequests` (
+  `specialRequestsID` bigint(20) NOT NULL, 
+  `veganOptions` varchar(100) NOT NULL,
+  `specialCake` varchar(100) NOT NULL,
+  `largeTable` varchar(100) NOT NULL,
+  `tablesOutside` varchar(100) NOT NULL,
+  `kidsMeals` varchar(100) NOT NULL,
+  `exLargePizzas` varchar(100) NOT NULL,
+  `playSong` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -68,6 +88,23 @@ ALTER TABLE `menuitems`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
+ALTER TABLE `events`
+  MODIFY `eventID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+COMMIT;
+
+ALTER TABLE `events`
+  MODIFY `specialRequestsID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+COMMIT;
+
+ALTER TABLE `specialRequests`
+  MODIFY `specialRequestsID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+COMMIT;
+
+ALTER TABLE `events`
+    ADD CONSTRAINT `eventsFK`
+    FOREIGN KEY (`specialRequestsID`)
+    REFERENCES `specialRequests`(`specialRequestsID`);
+    
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
