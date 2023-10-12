@@ -9,9 +9,6 @@ trigger:
 pool:
   vmImage: windows-latest
 
-variables:
-  phpVersion: 8.2.11
-
 steps:
 - task: NodeTool@0
   inputs:
@@ -34,20 +31,4 @@ steps:
     arguments: '--nobuild --configuration $(buildConfiguration)'
     publishTestResults: true 
     testResultsFiles: '*.tests.xml'
-
-- script: |
-    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
-    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
-    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
-    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
-    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
-    php -version
-  displayName: 'Use PHP version $(phpVersion)'
-
-- script: |
-    composer self-update
-    composer dump-autoload
-    composer install --no-interaction --prefer-dist
-  displayName: 'Install Composer for PHPUnit testing'
-
 
