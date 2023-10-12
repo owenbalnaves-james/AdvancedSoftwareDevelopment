@@ -1,6 +1,7 @@
+
 <?php
 
-function testRemoveFavoriteMovie()
+function testCheckMenuNotEmpty()
 {
     include("connection.php");
 
@@ -25,5 +26,6 @@ function testRemoveFavoriteMovie()
     }
 }
 
+testCheckMenuNotEmpty();
 
 ?>
