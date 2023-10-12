@@ -68,8 +68,10 @@ form {
       width: 100%;
     }
   }
-  #order{
-    background-image: url("order.jpg");
+  #orderpic{
+   width: 500px;
+   height: 500px;
+   display: flex;
   }
 
   
