@@ -2,6 +2,6 @@ The menu and event management system are run using PHP code and store items in a
 
 Xampp can be downloaded from this link. https://www.apachefriends.org/
 Xampp should be installed prior to the downloading of the exe file package so that the code can be placed in the directory
-C:\xampp\htdocs\dashboard\AdvancedSoftwareDevelopment
+C:\xampp\htdocs\dashboard\<AdvancedSoftwareDevelopment>
 
-Once Xampp is installed, the program must be lanuched and Apache and MYSQL must be run. The user may then view and perform CRUD operastions for menu management and event management. 
+Once Xampp is installed, the program must be lanuched and Apache and MYSQL must be run. The user may then view and perform CRUD operastions for menu management and event management once the files are saved into the above location.  
