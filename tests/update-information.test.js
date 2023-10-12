@@ -62,7 +62,6 @@ const app = require('../Back-end/app');
 describe('POST /update-information', () => {
     it('should update user information when valid data is provided', function(done) {
         this.timeout(10000); // Set a timeout of 10 seconds for this test
-
         const userData = {
             email: 'test@example.com',
             phone: '1232',
@@ -70,7 +69,6 @@ describe('POST /update-information', () => {
             cardNumber: '1234 5678 1234 5678',
             address: '123 Main St'
         };
-
         request(app)
             .post('/api/accounts/update-information')
             .send(userData)
