@@ -21,7 +21,11 @@ The website is a basic restaurant management system with some simple features, s
  &nbsp; &nbsp; &nbsp; &nbsp;  Set up nodeJS environment  
  &nbsp; &nbsp; &nbsp; &nbsp;  Set up dependencies  
  &nbsp; &nbsp; &nbsp; &nbsp;  Write unit test for my own feature in the **tests package**  
- &nbsp; &nbsp; &nbsp; &nbsp;  Model the project. Create backend, routes package  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Model the project. Create backend, routes package   
+&nbsp; &nbsp; &nbsp; &nbsp;  Write homepage, index page  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Write createAccount page, ManageAccount page  
+  &nbsp; &nbsp; &nbsp; &nbsp;  Write resetPassword page  
+   &nbsp; &nbsp; &nbsp; &nbsp; Set up database  
  &nbsp; &nbsp; &nbsp; &nbsp;  Write readme file  
 
  &nbsp; &nbsp; Oliver:  
