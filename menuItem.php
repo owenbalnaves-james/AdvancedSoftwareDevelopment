@@ -64,8 +64,10 @@
         <div class=""><h3><?php echo "$formHeader" . $name;?></h3><br><br></div>
         <label id="icon" for="name"><i class="input"> Name:  </i></label>
         <input type="text" name="name" id="name" value="<?php echo $name;?>" required/>
-
-        <label for="name">Choose a category</label> 
+        <br>
+        <br>
+        <br>
+        <label for="name">Choose a category:</label> 
           <select name="category" id="category"> 
               <option value="Entrees">Entrees</option> 
               <option value="Pizzas">Pizzas</option> 
@@ -73,16 +75,24 @@
               <option value="Salads">Salads</option> 
               <option value="Desserts">Desserts</option> 
           </select>
-
+          <br>
+          <br>
+          <br>
         <label id="icon" for="name"><i class="input">Price:  </i></label>
         <input type="number" name="price" id="price" value="<?php echo $price;?>" required/>
-
-        <label id="icon" for="name"><i class="input">Pickup Only?  </i></label>
+        <br>
+        <br>
+        <br>
+        <label id="icon" for="name"><i class="input">Pickup Only? </i></label>
         <input type="number" name="pickupOnly" id="pickupOnly" value="<?php echo $pickupOnly;?>" required/>
-
+        <br>
+        <br>
+        <br>
         <label id="icon" for="name"><i class="input">Link to product image:  </i></label>
         <input type="text" name="imageLink" id="imageLink" value="<?php echo $link;?>" required/>
-
+        <br>
+        <br>
+        <br>
         <input type='hidden' name='id' id='id' value="<?php echo $pID;?>"/>
 
         <input type='hidden' name='task' id='task' value="<?php echo $value;?>"/>
