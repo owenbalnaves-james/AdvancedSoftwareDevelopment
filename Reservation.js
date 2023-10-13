@@ -2,39 +2,43 @@ const reservations = [];
 
 function addReservation() {
     const customerName = document.getElementById('customerName').value;
-    const tableNumber = parseInt(document.getElementById('tableNumber').value);
-    const reservationDate = document.getElementById('reservationDate').value;
-    const reservationTime = document.getElementById('reservationTime').value;
+    const tableNumberInput = document.getElementById('tableNumber');
+    const reservationDateInput = document.getElementById('reservationDate');
+    const reservationTimeInput = document.getElementById('reservationTime');
+
+    const tableNumber = parseInt(tableNumberInput.value);
+    const reservationDate = reservationDateInput.value;
+    const reservationTime = reservationTimeInput.value;
+
+    
+    if (!customerName || isNaN(tableNumber) || !reservationDate || !reservationTime) {
+        alert('Please enter a valid customer name, table number, reservation date, and time.');
+        return; 
+    }
 
     const startTime = new Date(`${reservationDate}T17:00`);
     const endTime = new Date(`${reservationDate}T20:00`);
     const selectedTime = new Date(`${reservationDate}T${reservationTime}`);
 
-    if (
-        customerName &&
-        !isNaN(tableNumber) &&
-        reservationDate &&
-        reservationTime &&
-        selectedTime >= startTime &&
-        selectedTime <= endTime
-    ) {
-        const reservation = {
-            customerName,
-            tableNumber,
-            dateTime: `${reservationDate} ${reservationTime}`,
-        };
-
-        reservations.push(reservation);
-
-        document.getElementById('customerName').value = '';
-        document.getElementById('tableNumber').value = '';
-        document.getElementById('reservationDate').value = '';
-        document.getElementById('reservationTime').value = '';
-
-        displayReservations();
-    } else {
-        alert('Please enter a valid customer name, table number, reservation date, and a time between 5 pm and 8 pm.');
+    if (selectedTime < startTime || selectedTime > endTime) {
+        alert('Please select a time between 5 pm and 8 pm.');
+        return; 
     }
+
+    const reservation = {
+        customerName,
+        tableNumber,
+        dateTime: `${reservationDate} ${reservationTime}`,
+    };
+
+    reservations.push(reservation);
+
+    document.getElementById('customerName').value = '';
+    tableNumberInput.value = '';
+    reservationDateInput.value = '';
+    reservationTimeInput.value = '';
+
+    displayReservations();
 }
 
 function displayReservations() {
