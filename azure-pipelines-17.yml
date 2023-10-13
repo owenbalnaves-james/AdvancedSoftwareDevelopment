@@ -25,5 +25,5 @@ steps:
     displayName: 'Install Dependencies'
 
 - script: |
-    npx mocha tests/update-information.test.js --require esm
-    displayName: 'Run Unit Tests'
+    npx @babel/node tests/update-information.test.js
+    displayName: 'Run Unit Tests with Babel'
