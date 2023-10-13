@@ -5,13 +5,15 @@ function addReservation() {
     const tableNumberInput = document.getElementById('tableNumber');
     const reservationDateInput = document.getElementById('reservationDate');
     const reservationTimeInput = document.getElementById('reservationTime');
+    const numberOfPeopleInput = document.getElementById('numberOfPeople');
 
     const tableNumber = parseInt(tableNumberInput.value);
     const reservationDate = reservationDateInput.value;
     const reservationTime = reservationTimeInput.value;
+    const numberOfPeople = parseInt(numberOfPeopleInput.value);
 
-    if (!customerName || isNaN(tableNumber) || !reservationDate || !reservationTime) {
-        alert('Please enter a valid customer name, table number, reservation date, and time.');
+    if (!customerName || isNaN(tableNumber) || !reservationDate || !reservationTime || isNaN(numberOfPeople)) {
+        alert('Please enter a valid customer name, table number, reservation date, time, and number of people.');
         return;
     }
 
@@ -28,6 +30,7 @@ function addReservation() {
         customerName,
         tableNumber,
         dateTime: `${reservationDate} ${reservationTime}`,
+        numberOfPeople,
     };
 
     reservations.push(reservation);
@@ -36,6 +39,7 @@ function addReservation() {
     tableNumberInput.value = '';
     reservationDateInput.value = '';
     reservationTimeInput.value = '';
+    numberOfPeopleInput.value = '';
 
     displayReservations();
 }
@@ -46,7 +50,7 @@ function displayReservations() {
 
     reservations.forEach((reservation, index) => {
         const listItem = document.createElement('li');
-        listItem.innerHTML = `Customer: ${reservation.customerName}, Table: ${reservation.tableNumber}, Date/Time: ${reservation.dateTime}`;
+        listItem.innerHTML = `Customer: ${reservation.customerName}, Table: ${reservation.tableNumber}, Date/Time: ${reservation.dateTime}, Number of People: ${reservation.numberOfPeople}`;
 
         const editButton = document.createElement('button');
         editButton.innerText = 'Edit';
@@ -66,14 +70,18 @@ function displayReservations() {
 function editReservation(index) {
     const newCustomerName = prompt('Enter new customer name:');
     const newTableNumber = parseInt(prompt('Enter new table number:'));
+    const newDateTime = prompt('Enter new date and time:');
+    const newNumberOfPeople = parseInt(prompt('Enter new number of people:'));
 
-    if (newCustomerName && !isNaN(newTableNumber)) {
+    if (newCustomerName && !isNaN(newTableNumber) && newDateTime && !isNaN(newNumberOfPeople)) {
         reservations[index].customerName = newCustomerName;
         reservations[index].tableNumber = newTableNumber;
+        reservations[index].dateTime = newDateTime;
+        reservations[index].numberOfPeople = newNumberOfPeople;
 
         displayReservations();
     } else {
-        alert('Please enter customer name and table number.');
+        alert('Please enter customer name, table number, date/time, and a valid number of people.');
     }
 }
 

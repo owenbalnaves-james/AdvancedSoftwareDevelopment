@@ -27,6 +27,7 @@ The website is a basic restaurant management system with some simple features, s
  &nbsp; &nbsp; Oliver:  
  &nbsp; &nbsp; &nbsp; &nbsp;  Reservation Page  
  &nbsp; &nbsp; &nbsp; &nbsp;  Specials Menu Page  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Write readme file 
   
 
 &nbsp; &nbsp; Phuc:  
