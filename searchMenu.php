@@ -45,7 +45,7 @@
       else if ($value == 'create') {
         $product_id = 34;
 
-        $query = "insert into menuitems (id,name,category,price,pickupOnly,imageLink) values ('$pID','$iName','$iCategory','$iPrice', '$iPickupOnly','$iLink')";
+        $query = "insert into menuitems (name,category,price,pickupOnly,imageLink) values ('$iName','$iCategory','$iPrice', '$iPickupOnly','$iLink')";
         mysqli_query($con,$query);
 
         echo "<h3>New product added.</h3>";

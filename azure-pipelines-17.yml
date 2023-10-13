@@ -12,14 +12,18 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '14.x'
   displayName: 'Install Node.js'
 
 - script: |
     npm install
     npm run build
   displayName: 'npm install and build'
-  
+
+- script: | 
+    npm install
+    displayName: 'Install Dependencies'
+
 - script: |
-    npm test
-    displayName: 'run unit tests for feature review information'
+    npx @babel/node tests/update-information.test.js
+    displayName: 'Run Unit Tests with Babel'

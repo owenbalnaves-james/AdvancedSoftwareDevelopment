@@ -2,24 +2,42 @@ const reservations = [];
 
 function addReservation() {
     const customerName = document.getElementById('customerName').value;
-    const tableNumber = parseInt(document.getElementById('tableNumber').value);
+    const tableNumberInput = document.getElementById('tableNumber');
+    const reservationDateInput = document.getElementById('reservationDate');
+    const reservationTimeInput = document.getElementById('reservationTime');
 
-    if (customerName && !isNaN(tableNumber)) {
-        const reservation = {
-            customerName,
-            tableNumber,
-            dateTime: new Date().toLocaleString()
-        };
+    const tableNumber = parseInt(tableNumberInput.value);
+    const reservationDate = reservationDateInput.value;
+    const reservationTime = reservationTimeInput.value;
 
-        reservations.push(reservation);
-
-        document.getElementById('customerName').value = '';
-        document.getElementById('tableNumber').value = '';
-
-        displayReservations();
-    } else {
-        alert('Please enter customer name and table number.');
+    if (!customerName || isNaN(tableNumber) || !reservationDate || !reservationTime) {
+        alert('Please enter a valid customer name, table number, reservation date, and time.');
+        return;
     }
+
+    const startTime = new Date(`${reservationDate}T17:00`);
+    const endTime = new Date(`${reservationDate}T20:00`);
+    const selectedTime = new Date(`${reservationDate}T${reservationTime}`);
+
+    if (selectedTime < startTime || selectedTime > endTime) {
+        alert('Please select a time between 5 pm and 8 pm.');
+        return;
+    }
+
+    const reservation = {
+        customerName,
+        tableNumber,
+        dateTime: `${reservationDate} ${reservationTime}`,
+    };
+
+    reservations.push(reservation);
+
+    document.getElementById('customerName').value = '';
+    tableNumberInput.value = '';
+    reservationDateInput.value = '';
+    reservationTimeInput.value = '';
+
+    displayReservations();
 }
 
 function displayReservations() {
@@ -29,7 +47,7 @@ function displayReservations() {
     reservations.forEach((reservation, index) => {
         const listItem = document.createElement('li');
         listItem.innerHTML = `Customer: ${reservation.customerName}, Table: ${reservation.tableNumber}, Date/Time: ${reservation.dateTime}`;
-        
+
         const editButton = document.createElement('button');
         editButton.innerText = 'Edit';
         editButton.onclick = () => editReservation(index);

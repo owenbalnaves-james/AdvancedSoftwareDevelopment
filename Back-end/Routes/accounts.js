@@ -35,11 +35,22 @@ router.post("/create",(req,res,next) => {
 router.post("/update-information",(req,res,next) => {
     const {phone, name, cardNumber, address} = req.body;
     console.log(req.body)
-    Account.findOneAndUpdate({email: req.body.email}, req.body).then(response => {
-        res.status(200).send(response)
-    }).catch(err => {
-        res.status(400).send(err)
-    })
+    // Account.findOneAndUpdate({email: req.body.email}, req.body).then(response => {
+    //     res.status(200).send({ message: "Update successfully" });
+    // }).catch(err => {
+    //     res.status(400).send(err)
+    // })
+    console.log('Request Body:', req.body); // Log the request body
+    Account.findOneAndUpdate({ email: req.body.email }, req.body)
+        .then(response => {
+            console.log('Database Response:', response);
+            res.status(200).send({ message: "Update successfully" });
+        })
+        .catch(err => {
+            console.log('Database Error:', err);
+            res.status(400).send(err);
+        });
+    
 })
 router.post("/get-data", (req,res,next) => {
     Account.findOne({email: req.body.email}).then(response => {
