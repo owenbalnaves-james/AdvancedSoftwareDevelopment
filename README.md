@@ -31,7 +31,7 @@ The website is a basic restaurant management system with some simple features, s
 
 &nbsp; &nbsp; Phuc:  
  &nbsp; &nbsp; &nbsp; &nbsp;  Submit rating feature  
- &nbsp; &nbsp; &nbsp; &nbsp;  Order management feature
+ &nbsp; &nbsp; &nbsp; &nbsp;  Order management feature  
  &nbsp; &nbsp; &nbsp; &nbsp;  Write readme file 
 
 
