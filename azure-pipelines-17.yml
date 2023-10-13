@@ -2,9 +2,8 @@
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
-- Branch2
+- Branch2  # Define the branch to trigger the pipeline
 
 pool:
   vmImage: windows-latest
@@ -25,5 +24,6 @@ steps:
     displayName: 'Install Dependencies'
 
 - script: |
+    npm install --global @babel/node  # Install Babel Node globally
     npx @babel/node tests/update-information.test.js
     displayName: 'Run Unit Tests with Babel'
