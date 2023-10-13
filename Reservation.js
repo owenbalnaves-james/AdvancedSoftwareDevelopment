@@ -66,7 +66,7 @@ function displayReservations() {
 function editReservation(index) {
     const newCustomerName = prompt('Enter new customer name:');
     const newTableNumber = parseInt(prompt('Enter new table number:'));
-    const newDateTime = prompt('Enter new date and time (YYYY-MM-DD HH:mm):');
+    const newDateTime = prompt('Enter new date and time:');
 
     if (newCustomerName && !isNaN(newTableNumber) && newDateTime) {
         reservations[index].customerName = newCustomerName;
@@ -75,7 +75,7 @@ function editReservation(index) {
 
         displayReservations();
     } else {
-        alert('Please enter customer name, table number, and a valid date/time (YYYY-MM-DD HH:mm).');
+        alert('Please enter customer name, table number, and a valid date/time.');
     }
 }
 
