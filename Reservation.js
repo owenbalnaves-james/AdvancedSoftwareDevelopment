@@ -3,22 +3,26 @@ const reservations = [];
 function addReservation() {
     const customerName = document.getElementById('customerName').value;
     const tableNumber = parseInt(document.getElementById('tableNumber').value);
+    const reservationDate = document.getElementById('reservationDate').value;
+    const reservationTime = document.getElementById('reservationTime').value;
 
-    if (customerName && !isNaN(tableNumber)) {
+    if (customerName && !isNaN(tableNumber) && reservationDate && reservationTime) {
         const reservation = {
             customerName,
             tableNumber,
-            dateTime: new Date().toLocaleString()
+            dateTime: `${reservationDate} ${reservationTime}`,
         };
 
         reservations.push(reservation);
 
         document.getElementById('customerName').value = '';
         document.getElementById('tableNumber').value = '';
+        document.getElementById('reservationDate').value = '';
+        document.getElementById('reservationTime').value = '';
 
         displayReservations();
     } else {
-        alert('Please enter customer name and table number.');
+        alert('Please enter customer name, table number, reservation date, and time.');
     }
 }
 
@@ -29,7 +33,7 @@ function displayReservations() {
     reservations.forEach((reservation, index) => {
         const listItem = document.createElement('li');
         listItem.innerHTML = `Customer: ${reservation.customerName}, Table: ${reservation.tableNumber}, Date/Time: ${reservation.dateTime}`;
-        
+
         const editButton = document.createElement('button');
         editButton.innerText = 'Edit';
         editButton.onclick = () => editReservation(index);
