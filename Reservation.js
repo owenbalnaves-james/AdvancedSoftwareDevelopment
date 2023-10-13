@@ -6,7 +6,18 @@ function addReservation() {
     const reservationDate = document.getElementById('reservationDate').value;
     const reservationTime = document.getElementById('reservationTime').value;
 
-    if (customerName && !isNaN(tableNumber) && reservationDate && reservationTime) {
+    const startTime = new Date(`${reservationDate}T17:00`);
+    const endTime = new Date(`${reservationDate}T20:00`);
+    const selectedTime = new Date(`${reservationDate}T${reservationTime}`);
+
+    if (
+        customerName &&
+        !isNaN(tableNumber) &&
+        reservationDate &&
+        reservationTime &&
+        selectedTime >= startTime &&
+        selectedTime <= endTime
+    ) {
         const reservation = {
             customerName,
             tableNumber,
@@ -22,7 +33,7 @@ function addReservation() {
 
         displayReservations();
     } else {
-        alert('Please enter customer name, table number, reservation date, and time.');
+        alert('Please enter a valid customer name, table number, reservation date, and a time between 5 pm and 8 pm.');
     }
 }
 

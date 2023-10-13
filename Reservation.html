@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reservation Management</title>
+    <title>Restaurant Reservations</title>
 </head>
 <body>
-    <h1>Reservation Management</h1>
-    <label for="customerName">Customer Name:</label>
-    <input type="text" id="customerName">
-    <label for="tableNumber">Table Number:</label>
-    <input type="number" id="tableNumber">
-    <label for="reservationDate">Reservation Date:</label>
-    <input type="date" id="reservationDate">
-    <label for="reservationTime">Reservation Time:</label>
-    <input type="time" id="reservationTime">
+    <h1>Restaurant Reservations</h1>
+    <div>
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName">
+    </div>
+    <div>
+        <label for="tableNumber">Table Number:</label>
+        <input type="number" id="tableNumber">
+    </div>
+    <div>
+        <label for="reservationDate">Reservation Date:</label>
+        <input type="date" id="reservationDate">
+    </div>
+    <div>
+        <label for="reservationTime">Reservation Time:</label>
+        <input type="time" id="reservationTime">
+    </div>
     <button id="addReservationButton">Add Reservation</button>
-
-    <h2>Reservations</h2>
+    <h2>Reservations:</h2>
     <ul id="reservationList"></ul>
 
-    <script src="reservation.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
