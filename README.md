@@ -14,6 +14,15 @@ The website is a basic restaurant management system with some simple features, s
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	nodemon server.js or noder server.js  
 &nbsp; &nbsp; &nbsp; &nbsp;  run website  
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; index.html on browser  
+ **Work Distribution:**  
+ &nbsp; &nbsp; Lam:  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Login / Log out feature  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Account management feature  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Set up nodeJS environment  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Set up dependencies  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Write unit test for my own feature in the **tests package**  
+ &nbsp; &nbsp; &nbsp; &nbsp;  Model the project. Create backend, routes package  
+ 
 	
 
 	
