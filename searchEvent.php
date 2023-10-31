@@ -51,7 +51,7 @@
               echo "<h3>Event has already been approved.</h3>";
             }
             else {
-              echo "<h3>Event" . $iName . "has been approved.</h3>";
+              echo "<h3>Event" . $iName . "has been approved. </h3>";
             }
           }
         }
@@ -81,17 +81,22 @@
     {
         if($result && mysqli_num_rows($result)> 0)
         {
-          while($row = $result->fetch_assoc()) {
+          while($row = $result->fetch_assoc()) {//Editing an event 
             echo "<div> <h4> <b style='font-size: 25px;'> " 
             . $row["name"] . "</b> <br> <br>" .
              "  <em> Number of atendees: </em>" . $row["numAtendees"] . "<br><br>" 
              . $row["date"] .  "<br><br>" . $row["description"] . "<br><br>" . $row["approved"] . "</h4>" . "<br> </div>";
           
               echo "<form action='eventItem.php' method='POST'> " ;
-              echo "<input type='hidden' name='id' id='id' value='" . $row['eventID'] . "'/>
-              <input type='hidden' name='name' id='name' value='" . $row['name'] . "'/>
+              echo "<input type='hidden' name='name' id='name' value='" . $row['name'] . "'/>
               <input type='hidden' name='customerID' id='customerID' value='" . $row['customerID'] . "'/>
-              ";
+              <input type='hidden' name='numAtendees' id='numAtendees' value='" . $row['numAtendees'] . "'/>
+              <input type='hidden' name='date' id='date' value='" . $row['date'] . "'/>
+              <input type='hidden' name='date' id='date' value='" . $row['date'] . "'/>
+              <input type='hidden' name='description' id='description' value='" . $row['description'] . "'/>
+              <input type='hidden' name='specialRequestsID' id='specialRequestsID' value='" . $row['specialRequestsID'] . "'/>
+              <input class='c-btn' type='submit' name='eventBtn' value='Edit Event'/>
+              ";//Consider editing submitted events 
 
               echo "</form>";
               $_SESSION['eventID'] = $row['eventID'];
@@ -101,7 +106,6 @@
               $_SESSION['description'] = $row['description'];
               $_SESSION['specialRequestsID'] = $row['specialRequestsID'];
               $_SESSION['approved'] = $row['approved'];
-            
           }
         } 
         else {
@@ -112,8 +116,6 @@
       }
       echo "</div>";
       echo "</div>";
-  
-  
   
   ?>
 

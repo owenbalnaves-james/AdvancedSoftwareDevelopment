@@ -43,9 +43,6 @@
     $formHeader = "Edit event: ";
   }
 
-
-  
-
 ?>
 
 

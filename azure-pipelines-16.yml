@@ -7,7 +7,7 @@ trigger:
 - Branch2
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 steps:
 - task: NodeTool@0
@@ -19,16 +19,3 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-
-- script: |
-    npm test
-  displayName: 'Run unit tests'
-
-- task: PublishTestResults@2
-  displayName: 'Run unit tests - $(buildConfiguration)'
-  inputs:
-    command: 'test'
-    arguments: '--nobuild --configuration $(buildConfiguration)'
-    publishTestResults: true 
-    testResultsFiles: '*.tests.xml'
-

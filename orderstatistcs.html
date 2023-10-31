@@ -3,53 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Statistics</title>
-    <!-- Add any necessary CSS stylesheets or libraries here -->
-    <link rel="stylesheet" href="styles.css">
+    <title>Restaurant Order Statistics</title>
+    <link rel="stylesheet" href="orderstatistics.css">
+    <!-- Required for rendering the chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Order Statistics</h1>
-    </header>
-    <main>
-        <!-- Filters and Date Range Selector (You can replace this with your UI components) -->
-        <section id="filters">
-            <!-- Add filters and date range selector inputs here -->
-            <label for="startDate">Start Date:</label>
-            <input type="date" id="startDate">
-            <label for="endDate">End Date:</label>
-            <input type="date" id="endDate">
-            <button id="applyFilters">Apply Filters</button>
-        </section>
+    <h1>Order Statistics</h1>
+    <div class="statistics-container">
+        <div class="menu-items">
+            <h2>Most Ordered Menu Items</h2>
+            <canvas id="menu-chart"></canvas>
+        </div>
+        <div class="top-selling">
+            <div class="week-selection">
+                <label for="date-select">Select Date: </label>
+                <input type="date" id="date-select">
+                <button id="view-daily-sales">View Top Sellers</button>
+            </div>
+            <h2>Top Selling</h2>
+            <ul id="top-selling-list"></ul>
+        </div>
+    
         
-        <!-- Order Statistics Display -->
-        <section id="orderStatistics">
-            <!-- You can use tables, charts, or other HTML elements to display statistics here -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Menu Item</th>
-                        <th>Quantity Ordered</th>
-                        <th>Customer</th>
-                        <th>Order Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Populate this table with data from your backend -->
-                    <!-- Example data (replace with dynamic data from your system): -->
-                    <tr>
-                        <td>Burger</td>
-                        <td>25</td>
-                        <td>John Doe</td>
-                        <td>2023-10-03 12:30 PM</td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                </tbody>
-            </table>
-        </section>
-    </main>
-    <footer>
-        <!-- Add any footer content here -->
-    </footer>
+    </div>
+    
+    <script src="orderstatistics.js"></script>
 </body>
 </html>
