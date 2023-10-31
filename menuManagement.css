@@ -146,6 +146,14 @@ body, h1, h2, h3, p, ul, li {
     background-color: #ff8533;
   }
 
+  .btn-block {
+    font-size: 15px;
+    display:inline;
+  }
+  .input {
+
+  }
+
   .results-table {
     width:93%;
     background-color: #b4aaaa;    
