@@ -112,3 +112,17 @@ hr {
     font-size: 12px;
     padding-right: 10px;
   }
+  #copyright {
+    background: #343434;
+    color: #ffffff;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: center;
+   }
+  #copyright p {
+    color: #ffffff;
+  }
+  #copyright a {
+    color: #ffffff;
+  } 
+  
