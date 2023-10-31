@@ -3,60 +3,122 @@
     <title>Restaurant of Group 8</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <form id="myform">
       <div class="container">
-        <!-- <label for="email"><b>Email</b></label>
-            <input type="email" name="email" id="email"> -->
+        <div class="container mt-5">
+          <!-- Contact Information Panel -->
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Contact Information</h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label for="email"><b>Email</b></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter email"
+                  name="email"
+                  id="email"
+                  readonly
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone"><b>Phone</b></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter phone number"
+                  name="phone"
+                  id="phone"
+                  required
+                />
+              </div>
+            </div>
+          </div>
 
-        <label for="email"><b>Email</b></label>
-        <input
-          type="text"
-          placeholder="Enter email number"
-          name="email"
-          id="email"
-          readonly
-        />
+          <!-- Basic Information Panel -->
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Basic Information</h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label for="name"><b>Name</b></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Your Name"
+                  name="name"
+                  id="name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="DOB"><b>Choose</b></label>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="DOB"
+                  id="DOB"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="DOB-text"><b>Date of Birth</b></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="DOB-text"
+                  id="DOB-text"
+                  readonly
+                  required
+                />
+              </div>
+            </div>
+          </div>
 
-        <label for="phone"><b>Phone</b></label>
-        <input
-          type="text"
-          placeholder="Enter phone number"
-          name="phone"
-          id="phone"
-          required
-        />
-
-        <label for="name"><b>Name</b></label>
-        <input
-          type="text"
-          placeholder="Enter Your Name"
-          name="name"
-          id="name"
-          required
-        />
-
-        <label for="cardNumber"><b>Card Number</b></label>
-        <input
-          type="text"
-          placeholder="Enter Your Card Number"
-          name="card"
-          id="card"
-          required
-        />
-
-        <label for="address"><b>Address</b></label>
-        <input
-          type="text"
-          placeholder="Enter Your Address"
-          name="address"
-          id="address"
-          required
-        />
-
+          <!-- Payment Address Panel -->
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Payment Address</h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label for="cardNumber"><b>Card Number</b></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Your Card Number"
+                  name="card"
+                  id="card"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="address"><b>Address</b></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Your Address"
+                  name="address"
+                  id="address"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
         <button type="submit">Update</button>
         <button onclick="deleteAccount()">Delete Account</button>
       </div>
@@ -72,13 +134,16 @@
           var name = document.getElementById("name").value;
           var cardNumber = document.getElementById("card").value;
           var address = document.getElementById("address").value;
-          const apiUrl = "http://localhost:3000/api/accounts/update-information";
+          var DOB = document.getElementById("DOB").value;
+          const apiUrl =
+            "http://localhost:3000/api/accounts/update-information";
           const requestData = {
             email: email,
             phone: phone,
             name: name,
             cardNumber: cardNumber,
             address: address,
+            DOB: DOB,
           };
           fetch(apiUrl, {
             method: "POST",
@@ -109,12 +174,17 @@
             return response.json();
           })
           .then((data) => {
-            console.log(data.email)
+            console.log(data.email);
             document.getElementById("email").value = data.email;
             document.getElementById("phone").value = data.phone;
             document.getElementById("name").value = data.name;
-            document.getElementById("card").value = data.cardNumber;
+            var cardNumber = data.cardNumber;
+            var hiddenCardNumber = "*".repeat(12) + cardNumber.substring(12);
+            console.log(cardNumber);
+            document.getElementById("card").value = hiddenCardNumber;
             document.getElementById("address").value = data.address;
+            const dateOnly = data.DOB.split("T")[0];
+            document.getElementById("DOB-text").value = dateOnly;
           })
           .catch((error) => {
             console.error(
@@ -130,10 +200,9 @@
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ email: localStorage.getItem("email") }),
-        })
-          .then((response) => {
-            window.location.href = "index.html";
-          })
+        }).then((response) => {
+          window.location.href = "index.html";
+        });
       }
       window.addEventListener("load", getData());
     </script>

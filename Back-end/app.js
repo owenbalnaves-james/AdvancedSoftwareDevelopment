@@ -13,12 +13,13 @@ const app = express();
 mongoose.connect("mongodb+srv://lamtiensinh2301:tranhoanglam@cluster0.k3sdoe8.mongodb.net/account?retryWrites=true&w=majority")
 .then(()=>console.log("Connected to database"))
 .catch(()=>console.log("Connection failed"));
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, '..')));
 // Explicitly serve index.html for the root URL.
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '.', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
