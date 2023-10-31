@@ -2,7 +2,15 @@ const { response } = require("express");
 const express = require("express");
 const account = require("../models/account");
 const Account = require("../models/account");
+const nodemailer = require("nodemailer");
 const router = express.Router();
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "lamtiensinh2301@gmail.com",
+      pass: "vjbquihufkduwzkg",
+    },
+  });
 router.post("", (req,res,next)=>{
     const {email, password} = req.body;
     Account.findOne({email,password}).then(userValid=>{
@@ -27,13 +35,20 @@ router.post("/create",(req,res,next) => {
         password : password,
     })
     account.save().then(result => {
+        const mailOptions = {
+            from: "lamtiensinh2301@gmail.com",
+            to: email,
+            subject: "Welcome to Group8's Restaurant",
+            text: `Hi, Thank you for signing up`,
+          };
+        transporter.sendMail(mailOptions);
         res.status(200).json({
             message:"Create account successfully"
         })
     })
 })
 router.post("/update-information",(req,res,next) => {
-    const {phone, name, cardNumber, address} = req.body;
+    const {phone, name, cardNumber, address, DOB} = req.body;
     console.log(req.body)
     Account.findOneAndUpdate({email: req.body.email}, req.body).then(response => {
         res.status(200).send(response)

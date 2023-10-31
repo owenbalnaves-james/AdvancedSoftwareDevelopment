@@ -7,6 +7,7 @@ const accountSchema = mongoose.Schema({
   name: { type: String },
   cardNumber: { type: String },
   address: { type: String },
+  DOB: { type: Date },
 });
 
 module.exports = mongoose.model("Account", accountSchema);
