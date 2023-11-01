@@ -11,15 +11,12 @@
     "mongodb": "^6.0.0",
 
     "mongoose": "^7.5.0",
-<<<<<<< HEAD
     "nodemailer": "^6.9.7",
     "nodemon": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^4.3.10",
-    "mocha": "^10.2.0"
-=======
-
+    "mocha": "^10.2.0",
     "nodemon": "^3.0.1"
 
   },
@@ -48,7 +45,6 @@
 
     "test": "mocha tests/update-information.test.js --timeout 10000"
 
->>>>>>> refs/remotes/origin/Branch2
   }
 
 }

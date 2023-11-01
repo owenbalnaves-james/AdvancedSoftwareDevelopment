@@ -9,6 +9,7 @@
   <body>
     <form id="myform">
       <div class="container">
+        <h2 class="welcome-text">WELCOME to The Bestie restaurant</h2>
         <label for="email"><b>Email</b></label>
         <input
           type="text"
@@ -42,11 +43,15 @@
           justify-content: space-between;
         "
       >
-        <button type="button" class="cancelbtn">Cancel</button>
-        <span class="psw">Create <a href="createAccount.html">account</a></span>
-        <span class="psw"
-          >Forgot <a href="resetpassword.html">password?</a></span
-        >
+        <div class="button-container">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <span class="psw"
+            ><a href="createAccount.html">Create Account</a></span
+          >
+          <span class="psw"
+            ><a href="resetpassword.html">Forgot Password?</a></span
+          >
+        </div>
       </div>
     </form>
     <script>
