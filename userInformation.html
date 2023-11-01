@@ -181,6 +181,7 @@
             var cardNumber = data.cardNumber;
             var hiddenCardNumber = "*".repeat(12) + cardNumber.substring(12);
             console.log(cardNumber);
+            // Update the card input field to display the hidden card number
             document.getElementById("card").value = hiddenCardNumber;
             document.getElementById("address").value = data.address;
             const dateOnly = data.DOB.split("T")[0];
@@ -193,6 +194,7 @@
             );
           });
       }
+
       function deleteAccount() {
         fetch("http://localhost:3000/api/accounts/delete", {
           method: "POST",
