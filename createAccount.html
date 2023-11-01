@@ -1,54 +1,82 @@
 <html>
-
-<head>
+  <head>
     <title>Restaurant of Group 8</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="createAccountStyle.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <form id="myform">
-        <div class="container">–
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+      <div class="container">
+        –
+        <label for="email"><b>Email</b></label>
+        <input
+          type="text"
+          placeholder="Enter Email"
+          name="email"
+          id="email"
+          required
+        />
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" id="password" required>
-
-            <button type="submit">Create</button>
-        </div>
+        <label for="psw"><b>Password</b></label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          id="password"
+          required
+        />
+        <span id="password-strength"></span>
+        <button type="submit">Create</button>
+      </div>
     </form>
     <script>
-        document.getElementById("myform").addEventListener("submit", function (event) {
-            event.preventDefault();
-            console.log("abc")
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-            console.log(email,password);
-            const apiUrl = 'http://localhost:3000/api/accounts/create';
+      document
+        .getElementById("myform")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const passwordStrengthMessage =
+            document.getElementById("password-strength");
+
+          // Regular expressions to check for at least one capitalized character and one number
+          const hasCapitalLetter = /[A-Z]/.test(password);
+          const hasNumber = /\d/.test(password);
+
+          // Check if the password meets the required criteria
+          if (hasCapitalLetter && hasNumber) {
+            passwordStrengthMessage.innerText = "Password is strong!";
+            passwordStrengthMessage.style.color = "green";
+
+            // Continue with form submission
+            const apiUrl = "http://localhost:3000/api/accounts/create";
             const requestData = {
-                email: email,
-                password: password,
+              email: email,
+              password: password,
             };
 
             fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestData)
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(requestData),
             })
-                .then(response => {
-                    window.location.href = "homepage.html";
-                })
-            .catch(error => {
-                console.error('Error sending data:', error);
-            });
-    
-});
+              .then((response) => {
+                window.location.href = "homepage.html";
+              })
+              .catch((error) => {
+                console.error("Error sending data:", error);
+              });
+          } else {
+            // Password does not meet the criteria
+            passwordStrengthMessage.innerText =
+              "Password must include at least one capitalized character and one number.";
+            passwordStrengthMessage.style.color = "red";
+          }
+        });
     </script>
-</body>
-
+  </body>
 </html>
