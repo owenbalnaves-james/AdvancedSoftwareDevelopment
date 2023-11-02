@@ -31,6 +31,32 @@
 
     $submitValue = "Save Changes";
     $formHeader = "Create New Dish: ";
+
+    echo "<script>
+    document.getElementById('myform').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var name = document.getElementById('name').value;
+        var category = document.getElementById('category').value;
+        const apiUrl = 'http://localhost:3000/api/menuItems/create';
+        const requestData = {
+            name: name,
+            category: category,
+        };
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+            .then(response => {
+            })
+        .catch(error => {
+            console.error('Error sending data:', error);
+        });
+    });
+    </script>";
+
   }
   else {
     $pID = $_POST['id'];
@@ -56,8 +82,7 @@
 
 <div class="main-content" style="text-align:center; padding:20px;">
       <div id="box">
-        <form method="POST" action='searchMenu.php'>
-        
+        <form id="myform" method="POST" action='searchMenu.php'>
         <a href="searchMenu.php" style="color:gray; top:180px; left: 18px; position:absolute;">Back<br><br></a>
       </div>
       <div class="btn-block">
@@ -84,7 +109,7 @@
         <br>
         <br>
         <label id="icon" for="name"><i class="input">Pickup Only? </i></label><br><br>
-        <input type="number" name="pickupOnly" id="pickupOnly" value="<?php echo $pickupOnly;?>" required/>
+        <input type="checkbox" name="pickupOnly" id="pickupOnly"/>
         <br>
         <br>
         <br>

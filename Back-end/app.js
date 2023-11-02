@@ -2,7 +2,9 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const accountRoutes = require("./Routes/accounts")
+const accountRoutes = require("./Routes/accounts");
+
+const menuItemsRoutes = require("./Routes/menuItems");
 // const countriesRoutes = require("./routes/countries");
 // const placesRoutes = require("./routes/places")
 // const informationRoutes = require("./routes/information")
@@ -24,4 +26,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use("/api/accounts",accountRoutes);
+
+app.use("/api/menuItems",menuItemsRoutes);
 module.exports = app;

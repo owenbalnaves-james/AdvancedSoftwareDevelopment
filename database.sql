@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `menuitems` (
-  `id` bigint(20) NOT NULL,
+  `id` int(5) PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `category` varchar(100) NOT NULL,
   `price` int(5) NOT NULL,
@@ -50,25 +50,25 @@ INSERT INTO `menuitems` (`id`, `name`, `category`, `price`, `pickupOnly`, `image
 (7, 'Autumn Fritto Misto', 'Entrees', 19, 'true', 'https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f6a5428bebf_-_autumn-fritto-misto-recipe-fw1010-xl-xl.jpg?resize=980:*');
 
 CREATE TABLE `events` (
-  `eventID` bigint(20) NOT NULL,
+  `eventID` bigint(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `organiserID` bigint(20) NOT NULL,
   `name` VARCHAR(180) NOT NULL,
   `numAtendees` bigint(20) NOT NULL,
   `date` varchar(100) NOT NULL,
   `description` varchar(1000) NOT NULL,
-  `specialRequestsID` bigint(20) NOT NULL,
-  `approved` bigint(2) NOT NULL DEFAULT 1
+  `specialRequestsID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `status` varchar(10) NOT NULL DEFAULT 'submitted'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `specialRequests` (
-  `specialRequestsID` bigint(20) NOT NULL, 
-  `veganOptions` varchar(100) NOT NULL,
-  `specialCake` varchar(100) NOT NULL,
-  `largeTable` varchar(100) NOT NULL,
-  `tablesOutside` varchar(100) NOT NULL,
-  `kidsMeals` varchar(100) NOT NULL,
-  `exLargePizzas` varchar(100) NOT NULL,
-  `playSong` varchar(100) NOT NULL
+  `specialRequestsID` bigint(20) PRIMARY KEY AUTO_INCREMENT, 
+  `veganOptions` varchar(100),
+  `specialCake` varchar(100),
+  `largeTable` varchar(100),
+  `tablesOutside` boolean,
+  `kidsMeals` boolean,
+  `exLargePizzas` boolean,
+  `playSong` varchar(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -84,9 +84,6 @@ CREATE TABLE `specialRequests` (
 --
 -- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `menuitems`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-COMMIT;
 
 ALTER TABLE `events`
   MODIFY `eventID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;

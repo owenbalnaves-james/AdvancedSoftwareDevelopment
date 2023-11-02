@@ -5,4 +5,4 @@ const menuItemSchema = mongoose.Schema({
 	cateogry:{type: String}
 })
 
-module.exports = mongoose.model("menuItems", menuItemSchema);
+module.exports = mongoose.model("menu", menuItemSchema);

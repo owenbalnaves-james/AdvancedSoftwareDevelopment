@@ -1,14 +1,16 @@
+const { response } = require("express");
 const express = require("express");
-const menu = require("../models/menu");
+const menuItem = require("../models/menuItem");
 const router = express.Router();
 
-router.post("", (req,res,next)=>{
-    const {name} = req.body;
-    menu.findOne({name}).then(userValid=>{
-        if(userValid){
-
-            res.status(200).send("<h1>Hello GFG Learner!</h1>");
-        }
-    });
+router.post("/create",(req,res,next) => {
+    const {name, category} = req.body;
+    const menuItem = new menuItem({
+        name : name,
+        category : category,
+    })
+    menuItem.save().then(result => {
+        res.status(200).json({
+        })
+    })
 })
-module.exports = router;

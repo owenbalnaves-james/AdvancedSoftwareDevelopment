@@ -16,7 +16,7 @@
 <section>
 <form action="searchMenu.php" method="POST" class="search-container">
     <h2 for="html">Search our menu:</h2>
-	  <input class="search-input"  type="text" name="search_data" id="search_data" />
+	  <input class="search-input"  type="text" name="search_data" id="search_data"/>
     <input class="search-button" type="submit" value="Search"/>
     <br><br>
     <h2 style="position:relative; left: 40%">OR</h2>
@@ -33,7 +33,13 @@
       $iName = $_POST['name'];
       $iCategory = $_POST['category'];
       $iPrice = $_POST['price'];
-      $iPickupOnly = $_POST['pickupOnly'];
+
+      if (isset($_POST['pickupOnly'])) {
+        $iPickupOnly = true;
+      }
+      else {
+        $iPickupOnly = false;
+      }
       $iLink = $_POST["imageLink"]; 
 
       if ($value == 'edit') {
@@ -43,18 +49,19 @@
         echo "<h3>Product edited.</h3>";
       }
       else if ($value == 'create') {
-        $product_id = 34;
 
         $query = "insert into menuitems (name,category,price,pickupOnly,imageLink) values ('$iName','$iCategory','$iPrice', '$iPickupOnly','$iLink')";
         mysqli_query($con,$query);
 
         echo "<h3>New product added.</h3>";
+
       }
     }
     else if ($value == 'delete') {
       $query = "delete from menuitems where id='$pID';";
       mysqli_query($con,$query);
       echo "<h3>Product deleted.</h3>";
+
     }
 
     echo "<div class='outer-results-table'>";
@@ -117,9 +124,15 @@
         if($result && mysqli_num_rows($result)> 0)
         {
           while($row = $result->fetch_assoc()) {
+            if ($row["pickupOnly"] == true) {
+              $pOnly = "yes";
+            }
+            else {
+              $pOnly = "no"; 
+            }
             echo "<div> <h4>" . "<img src=" . ($row["imageLink"]) ." width=98% height=40% > <br> <br> " . 
              " <b style='font-size: 25px;'> " . $row["name"] . "</b> <br> <br>" .
-             "  <em> Price $ </em>" . $row["price"] . "<br>" 
+             "  <em> Price $ </em>" . $row["price"] . "<br><br>" . "<b>Pickup only: </b>" . $pOnly . "<br>" 
              .  "</h4>" . "<br> </div>";
             if (false) {//If user is not an employee, show produt profile page
               echo "<form action='menu.php' method='POST'> 
