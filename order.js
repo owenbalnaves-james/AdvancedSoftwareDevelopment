@@ -22,7 +22,7 @@ function addOrder() {
 
         displayOrders();
     } else {
-        alert('Invalid input.');
+        alert('Invalid input.Please retype');
     }
 }
 

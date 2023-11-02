@@ -1,4 +1,13 @@
     <?php
+    class num {
+        public static $a = 0;
+        function getID()
+        {
+            self::$a++;
+            return self::$a;
+
+        }
+    }
         function get_user_data($con)
         {
             if(isset($_SESSION['user_id']))
@@ -14,4 +23,8 @@
                 }
             }
         }
+
+        
     ?>
+
+    

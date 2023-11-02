@@ -1,71 +1,101 @@
-/* Style for the header and page title */
-h1 {
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
     color: #333;
     text-align: center;
-    font-size: 24px;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-/* Style for the statistics container */
-.statistics-container {
+/* Statistics container styles */
+.statistics-container1, .statistics-container2 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+/* First Section */
+.menu-section {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    gap: 20px;
 }
 
-/* Style for the menu items section */
-.menu-items {
+.menu-items, .top-selling {
     flex: 1;
     padding: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.menu-items canvas, .top-selling ul {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+}
+
+.week-selection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.week-selection button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: #ffffff;
     border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-h2 {
-    color: #555;
+.week-selection button:hover {
+    background-color: #0056b3;
 }
 
-/* Style for the menu chart */
-#menu-chart {
-    background-color: #fff; /* Chart background color */
-    border: 1px solid #ddd; /* Chart border */
+/* Second Section */
+.customer-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-/* Style for the top-selling list */
-.top-selling {
+.customer-visits, .customer-ranks {
     flex: 1;
     padding: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.customer-visits canvas, .customer-ranks p {
+    width: 100%;
+    max-width: 600px;
 }
 
-li {
-    margin-bottom: 10px;
-    color: #333;
+.customer-ranks p {
+    font-size: 18px;
+    color: #666;
 }
 
-/* Specific styles for menu items */
-li:nth-child(1) {
-    color: #ff5733; /* Pizza */
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .menu-section, .customer-section {
+        flex-direction: column;
+    }
+
+    .menu-items, .top-selling, .customer-visits, .customer-ranks {
+        width: 100%;
+    }
 }
-
-li:nth-child(2) {
-    color: #ffad33; /* Burger */
-}
-
-li:nth-child(3) {
-    color: #33a0ff; /* Pasta */
-}
-
-li:nth-child(4) {
-    color: #33ff45; /* Salad */
-}
-
-
-
