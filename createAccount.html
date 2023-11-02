@@ -12,11 +12,12 @@
         –
         <label for="email"><b>Email</b></label>
         <input
-          type="text"
+          type="email"
           placeholder="Enter Email"
           name="email"
           id="email"
           required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
 
         <label for="psw"><b>Password</b></label>
@@ -40,6 +41,17 @@
           const password = document.getElementById("password").value;
           const passwordStrengthMessage =
             document.getElementById("password-strength");
+
+          // Regular expression to validate email format
+          const emailPattern =
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+          if (!emailPattern.test(email)) {
+            // Invalid email address
+            passwordStrengthMessage.innerText =
+              "Please enter a valid email address.";
+            passwordStrengthMessage.style.color = "red";
+            return; // Stop form submission
+          }
 
           // Regular expressions to check for at least one capitalized character and one number
           const hasCapitalLetter = /[A-Z]/.test(password);
