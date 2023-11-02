@@ -1,77 +1,97 @@
-/* Reset some default browser styles for consistency */
-body, h1, h2, p, table, th, td {
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f8f9;
     margin: 0;
     padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 20px;
     color: #333;
 }
 
 header {
     background-color: #333;
     color: #fff;
-    padding: 20px 0;
     text-align: center;
+    padding: 20px;
 }
 
 main {
+    padding: 40px;
+    width: 80%;
+    margin: 20px auto;
     background-color: #fff;
-    padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-th, td {
-    padding: 10px 15px;
-    border: 1px solid #e1e1e1;
-    text-align: left;
-}
-
-th {
-    background-color: #f7f7f7;
-    font-weight: bold;
-}
-
-td {
-    background-color: #fdfdfd;
-}
-
-button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 5px 15px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 footer {
-    margin-top: 30px;
+    background-color: #333;
+    color: #fff;
     text-align: center;
-    font-size: 0.9em;
-    color: #777;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f7f8f9;
+}
+
+/* Button Styles */
+button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+[onclick*="requestReservation"] {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+[onclick*="makeAvailable"] {
+    background-color: #28a745;
+    color: #fff;
+}
+/* Back to Homepage Button Styles */
+#backToHome {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#backToHome:hover {
+    background-color: #333;
+}
