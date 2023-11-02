@@ -15,14 +15,24 @@
 
 <body>
   <?php
-    if (isset($_POST["customerID"])) {
-      //$query = "select * from events where organiserID  = '$id' order by status" ;
+    if (isset($_POST["changeUserButton"])) {
+      changeUserType();
+    }
+
+    if (isset($_SESSION["user"]) && $_SESSION["user"] == "customer") {//customer using site
       $query = "select * from events where NOT status = 'rejected'";
       $result = mysqli_query($con,$query);
+      echo "<h4>You are logged in as a customer.</h4>";
+    }
+    else if (isset($_SESSION["user"]) && $_SESSION["user"] == "customer") {//employee using site
+      $query = "select * from events where NOT status = 'rejected'";
+      $result = mysqli_query($con,$query);
+      echo "<h4>You are logged in as an employee.</h4>";
     }
     else {
       $query = "select * from events where NOT status = 'rejected'";
       $result = mysqli_query($con,$query);
+      echo "<h4>You are logged in as a customer.</h4>";
     }
     
     if (isset($_POST['task'])) {
@@ -147,7 +157,7 @@
         else {
           echo "<h4 class='subHeading'> No events listed. </h4>";
         }
-        if (!isset($_SESSION["employeeID"])) { 
+        if (!isset($_SESSION["user"])) { 
           $abc = 444;
           echo "<br><br><form action='eventItem.php' method='POST'> 
           <input type='hidden' name='organiserID' id='organiserID' value='" . $abc . "'/>
@@ -160,6 +170,12 @@
       echo "</div>";
   
   ?>
+  <br><br><br><br><br>
+  <!--
+    <form style='position:absolute; margin-top:23%;'>
+      <input class='c-btn'  type='submit' name='changeUserButton' id='changeUserButton' value='Change user type'/>
+    </form>
+    -->
 
 
 

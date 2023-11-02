@@ -19,8 +19,6 @@
 </section>
 
 <?php
-  
-
   if (!isset($_POST['eventID'])) {//event ID - create new event 
     $viewName = "";
     $viewNumAtendees = "";
@@ -68,7 +66,7 @@
         <form action="searchEvent.php" method="POST">
         <div class=""><h3><?php echo "$formHeader" . $viewName;?></h3><br><br></div>
         <label id="icon" for="name"><i class="input"> Name:  </i></label><br><br>
-        <?php if (!isset($_SESSION['employeeID'])) {?>
+        <?php if (!isset($_SESSION['user'])) {?>
         <input type="text" name="name" id="name" value="<?php echo $viewName;?>" required/>
         <?php } else { ?>
           <p><?php echo $viewName; ?></p>
@@ -77,7 +75,7 @@
         <br>
         <br>
         <label id="icon"><i class="input">Number of atendees:  </i></label><br><br>
-        <?php if (!isset($_SESSION['employeeID'])) {?>
+        <?php if (!isset($_SESSION['user'])) {?>
         <input type="number" name="numAtendees" id="numAtendees" value="<?php echo $viewNumAtendees;?>" required/>
         <?php } else { ?>
           <p><?php echo $viewNumAtendees; ?></p>
@@ -85,7 +83,7 @@
         <br>
         <br>
         <br>
-        <?php if (!isset($_SESSION['employeeID'])) {?>
+        <?php if (!isset($_SESSION['user'])) {?>
         <label id="icon" ><i class="input">Event date: </i></label><br><br>
         <input type="date" name="date" id="date" value="<?php echo $viewDate;?>" required/>
         <?php } else { ?>
@@ -95,7 +93,7 @@
         <br>
         <br>
         <label id="icon"><i class="input">Description </i></label><br><br>
-        <?php if (!isset($_SESSION['employeeID'])) {?>
+        <?php if (!isset($_SESSION['user'])) {?>
         <input type="text" name="description" id="description" value="<?php echo $viewDescription;?>" required/>
         <?php } else { ?>
           <p><?php echo $viewDescription; ?></p>
@@ -105,7 +103,7 @@
         <br>
         <br>
         <br>
-        <?php if (!isset($_SESSION['employeeID'])) {?>
+        <?php if (!isset($_SESSION['user'])) {?>
         <h2>Special Requests:</h2>
         <br>
         <br>
