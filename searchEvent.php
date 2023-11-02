@@ -16,7 +16,8 @@
 <body>
   <?php
     if (isset($_POST["customerID"])) {
-      $query = "select * from events where organiserID  = '$id' order by status" ;
+      //$query = "select * from events where organiserID  = '$id' order by status" ;
+      $query = "select * from events where NOT status = 'rejected'";
       $result = mysqli_query($con,$query);
     }
     else {
@@ -55,10 +56,11 @@
             $eventID = $_POST['eventID'];
             $query = "update events set name='$eventName', numAtendees='$numAtendees', date='$eventDate', description='$eventDescription' where eventID = '$eventID';";
             mysqli_query($con,$query);
-            //$query1 = "select specialRequestsID from events where eventID='$eventID';";
-            //$result = mysqli_query($con,$query1);
-            //$query2 = "update specialRequests set veganOptions='$eventName', specialCake='$numAtendees', largeTable='$eventDate', tablesOutside='$eventDescription', kidsMeals='', exLargePizzas='', playSong='' where id = '$result';";
-            //mysqli_query($con,$query2); 
+            $query1 = "select * from events where name = '$eventName'";
+            $res = mysqli_query($con,$query1)->fetch_assoc();
+            $res1 = $res['eventID'];
+            $query2 = "update specialRequests set veganOptions='$veganOptions', specialCake='$specialCake', largeTable='$tableSize', tablesOutside='$tablesOutside', kidsMeals='$kidsMeals', exLargePizzas='$largePizzas', playSong='$song' where eventID = '$res1';";          
+            mysqli_query($con,$query2); 
             echo "<h3>Event edited.</h3>";
             $value = "None";
             header("Refresh:0");
@@ -89,8 +91,8 @@
           $query2 = "insert into specialRequests (veganOptions,specialCake,largeTable,tablesOutside,kidsMeals,exLargePizzas,playSong,eventID) values ('$veganOptions', '$specialCake', '$tableSize', '$tablesOutside', '$kidsMeals', '$largePizzas', '$playSong', '$res1')";
           mysqli_query($con,$query2);
           echo "<h3>New event added.</h3>";
-          //$value = "None";
-          //header("Refresh:0");
+          $value = "None";
+          header("Refresh:0");
         }
       }
       else if ($value == 'delete') {
@@ -118,8 +120,9 @@
           while($row = $result->fetch_assoc()) {//Editing an event 
              echo "<div> <h4> <b style='font-size: 25px;'> " 
              . $row["name"] . "</b> <br> <br>" .
-             "  <em> Number of atendees: </em>" . $row["numAtendees"] . "<br><br>" 
-             . $row["date"] .  "<br><br>" . $row["description"] . "<br><br>" . $row["status"] . "</h4>" . "<br> </div>";
+             "  <em> Number of atendees: </em>" . $row["numAtendees"] . "<br><br>" . "Date of event: "
+             . $row["date"] .  "<br><br>" . "Description of event: " . $row["description"] . "<br><br>" . "Current status of event application: " 
+             . $row["status"] . "</h4>" . "<br> </div>";
           
               echo "<form action='eventItem.php' method='POST'>";
               echo "<input type='hidden' name='eventID' id='eventID' value='" . $row['eventID'] . "'/>

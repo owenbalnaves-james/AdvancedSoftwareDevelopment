@@ -46,7 +46,6 @@
     $query = "select * from specialRequests where eventID = '$eventID'";
     $result = mysqli_query($con, $query);  
     $result1 = $result->fetch_array();
-    $specialReqID = $result1["specialRequestsID"];
     $veganOptions = $result1["veganOptions"];
     $specialCake = $result1["specialCake"];
     $largeTable = $result1["largeTable"];
@@ -120,6 +119,9 @@
               <option value="MainsDesserts">Mains and desserts</option> 
               <option value="None" selected>None</option> 
           </select>
+          <?php if (isset($_POST['eventID']))  {
+            echo "<p>Current preference: " . $veganOptions . "</p>";
+          } ?>
           <br>
           <br>
           <br>
@@ -139,26 +141,56 @@
           <br>
           <label>Select table size:</label> <br><br>
           <input type="number" name="tableSize" id="tableSize" value="<?php echo $largeTable ?>" required/>
+          <?php if (isset($_POST['eventID']))  {
+            echo "<p>Currently set: " . $largeTable . "</p>";
+          } ?>
           <br>
           <br>
           <br>
           <label>Tables outside?</label><br><br>
           <input type="checkbox" id="tablesOutside" name="tablesOutside">
           <br>
+          <?php if (isset($_POST['eventID']))  {
+             if ($tablesOutside == 0) {
+              echo "<p>Current preference: No </p>";
+            }
+            else {
+              echo "<p>Current preference: Yes </p>";
+            }    
+          } ?>
           <br>
           <br>
           <label>Request kids meals</label><br><br>
           <input type="checkbox" id="kidsMeals" name="kidsMeals">
+          <?php if (isset($_POST['eventID']))  {
+             if ($kidsMeals == 0) {
+              echo "<p>Current preference: No </p>";
+            }
+            else {
+              echo "<p>Current preference: Yes </p>";
+            }    
+          } ?>
           <br>
           <br>
           <br>
           <label>Order extra large pizzas</label><br><br>
           <input type="checkbox" id="largePizzas" name="largePizzas">
+          <?php if (isset($_POST['eventID']))  {
+            if ($largePizzas == 0) {
+              echo "<p>Current preference: No </p>";
+            }
+            else {
+              echo "<p>Current preference: Yes </p>";
+            }           
+          } ?>
           <br>
           <br>
           <br>
           <label>Play song during dinner</label><br><br>
-          <input type="text" name="song" id="song" value="<?php echo $playSong ?>"/>
+          <input type="text" name="song" id="song" value=""/>
+          <?php if (isset($_POST['eventID']))  {
+            echo "<p>Current song preference (if any): " . $playSong . "</p>";
+          } ?>
           <?php } else { ?>
 
           <?php } ?>
