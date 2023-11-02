@@ -108,3 +108,41 @@ ALTER TABLE `events`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL, -- If you have user information
+    menu_item_id INT NOT NULL,
+    order_date DATETIME NOT NULL,
+    quantity INT NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (menu_item_id) REFERENCES menuitems(id)
+);
+
+INSERT INTO orders (user_id, menu_item_id, order_date, quantity, total_price)
+VALUES
+    (1, 1, '2023-05-18 12:30:00', 2, 46.00),
+    (2, 2, '2023-05-18 13:15:00', 1, 25.00),
+    (3, 4, '2023-05-18 14:00:00', 3, 81.00),
+    -- Add more sample orders as needed
+;
+
+
+
+SELECT
+    menuitems.id AS menu_item_id,
+    menuitems.name AS menu_item_name,
+    DATE(orders.order_date) AS order_day,
+    SUM(orders.quantity) AS total_quantity,
+    SUM(orders.total_price) AS total_revenue
+FROM
+    orders
+JOIN
+    menuitems ON orders.menu_item_id = menuitems.id
+WHERE
+    DATE(orders.order_date) = '2023-05-18' -- Replace with the desired date
+GROUP BY
+    menu_item_id, menu_item_name, order_day
+ORDER BY
+    order_day;
