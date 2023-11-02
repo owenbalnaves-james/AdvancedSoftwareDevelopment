@@ -55,6 +55,10 @@
   #password-strength[style*="red"] {
     color: red;
   }
+
+  #password-length[style*="red"] {
+    color: red;
+  }
   
   /* Style for valid input messages */
   #password-strength[style*="green"] {
