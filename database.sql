@@ -56,7 +56,6 @@ CREATE TABLE `events` (
   `numAtendees` bigint(20) NOT NULL,
   `date` varchar(100) NOT NULL,
   `description` varchar(1000) NOT NULL,
-  `specialRequestsID` bigint(20) NOT NULL AUTO_INCREMENT,
   `status` varchar(10) NOT NULL DEFAULT 'submitted'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -68,7 +67,8 @@ CREATE TABLE `specialRequests` (
   `tablesOutside` boolean,
   `kidsMeals` boolean,
   `exLargePizzas` boolean,
-  `playSong` varchar(100)
+  `playSong` varchar(100),
+  `eventID` bigint(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -89,18 +89,14 @@ ALTER TABLE `events`
   MODIFY `eventID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
-ALTER TABLE `events`
-  MODIFY `specialRequestsID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-COMMIT;
-
 ALTER TABLE `specialRequests`
   MODIFY `specialRequestsID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
-ALTER TABLE `events`
-    ADD CONSTRAINT `eventsFK`
-    FOREIGN KEY (`specialRequestsID`)
-    REFERENCES `specialRequests`(`specialRequestsID`);
+ALTER TABLE `specialRequests`
+    ADD CONSTRAINT `specialRequestsFK`
+    FOREIGN KEY (`eventID`)
+    REFERENCES `events`(`eventID`);
     
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
@@ -121,7 +117,7 @@ INSERT INTO orders (user_id, menu_item_id, order_date, quantity, total_price)
 VALUES
     (1, 1, '2023-05-18 12:30:00', 2, 46.00),
     (2, 2, '2023-05-18 13:15:00', 1, 25.00),
-    (3, 4, '2023-05-18 14:00:00', 3, 81.00),
+    (3, 4, '2023-05-18 14:00:00', 3, 81.00)
     -- Add more sample orders as needed
 ;
 

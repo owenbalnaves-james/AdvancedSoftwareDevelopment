@@ -43,6 +43,18 @@
     $value = "edit";
     $eventID = $_POST['eventID'];
 
+    $query = "select * from specialRequests where eventID = '$eventID'";
+    $result = mysqli_query($con, $query);  
+    $result1 = $result->fetch_array();
+    $specialReqID = $result1["specialRequestsID"];
+    $veganOptions = $result1["veganOptions"];
+    $specialCake = $result1["specialCake"];
+    $largeTable = $result1["largeTable"];
+    $tablesOutside = $result1["tablesOutside"];
+    $kidsMeals = $result1["kidsMeals"];
+    $largePizzas = $result1["exLargePizzas"];
+    $playSong = $result1["playSong"];
+
     if (isset($_POST["employeeID"])) {
       $submitValue = "Submit Changes";
       $formHeader = "Manage event: ";
@@ -119,11 +131,14 @@
               <option value="Tirimasu">Tirimasu</option> 
               <option value="None" selected>None</option> 
           </select>
+          <?php if (isset($_POST['eventID']))  {
+            echo "<p>Currently selected: " . $specialCake . "</p>";
+          } ?>
           <br>
           <br>
           <br>
           <label>Select table size:</label> <br><br>
-          <input type="number" name="tableSize" id="tableSize" value="0" required/>
+          <input type="number" name="tableSize" id="tableSize" value="<?php echo $largeTable ?>" required/>
           <br>
           <br>
           <br>
@@ -132,8 +147,8 @@
           <br>
           <br>
           <br>
-          <label>Request kids table</label><br><br>
-          <input type="checkbox" id="kidsTable" name="kidsTable">
+          <label>Request kids meals</label><br><br>
+          <input type="checkbox" id="kidsMeals" name="kidsMeals">
           <br>
           <br>
           <br>
@@ -143,7 +158,7 @@
           <br>
           <br>
           <label>Play song during dinner</label><br><br>
-          <input type="text" name="song" id="song"/>
+          <input type="text" name="song" id="song" value="<?php echo $playSong ?>"/>
           <?php } else { ?>
 
           <?php } ?>

@@ -3,6 +3,7 @@
   <h1>Events Page</h1>
   <?php
     include("connection.php");
+    include("functions.php");
     //session_cache_limiter('private_no_expire');
     session_start();
     
@@ -35,13 +36,13 @@
           $eventDescription = $_POST['description'];
           
           //Get specialrequest data
-          $veganOptions = $_POST['$veganOptions'];
-          $specialCake = $_POST['$specialCake'];
-          $tableSize = $_POST['$tableSize'];
-          $tablesOutside = $_POST['$tablesOutside'];
-          $kidsTable = $_POST['$kidsTable'];
-          $largePizzas = $_POST['$largePizzas'];
-          $song = $_POST['$song'];
+          $veganOptions = $_POST['veganOptions'];
+          $specialCake = $_POST['specialCake'];
+          $tableSize = $_POST['tableSize'];
+          $tablesOutside = isset($_POST['tablesOutside']);
+          $kidsMeals = isset($_POST['kidsMeals']);
+          $largePizzas = isset($_POST['largePizzas']);
+          $playSong = $_POST['song'];
         }
         else {
           $iName = $_POST['name'];
@@ -54,8 +55,8 @@
             $eventID = $_POST['eventID'];
             $query = "update events set name='$eventName', numAtendees='$numAtendees', date='$eventDate', description='$eventDescription' where eventID = '$eventID';";
             mysqli_query($con,$query);
-            $query1 = "select specialRequestsID from events where eventID='$eventID';";
-            $result = mysqli_query($con,$query1);
+            //$query1 = "select specialRequestsID from events where eventID='$eventID';";
+            //$result = mysqli_query($con,$query1);
             //$query2 = "update specialRequests set veganOptions='$eventName', specialCake='$numAtendees', largeTable='$eventDate', tablesOutside='$eventDescription', kidsMeals='', exLargePizzas='', playSong='' where id = '$result';";
             //mysqli_query($con,$query2); 
             echo "<h3>Event edited.</h3>";
@@ -76,17 +77,17 @@
           //header("Refresh:0");
         }
         else if ($value == 'create') {
-          $organiserID = $_POST['$organiserID'];
-          $query = "insert into events (name,numAtendees,date,description,specialRequestsID) values ('$eventName','$numAtendees','$eventDate','$eventDescription', 'select specialRequestsID from events where name='$eventName'')";
+          $organiserID = $_POST['organiserID'];
+          $num = new num();
+          $value = $num->getID();
+          $query = "insert into events (name,numAtendees,date,description) values ('$eventName','$numAtendees','$eventDate','$eventDescription')";
+          //$query2 = "update specialRequests set veganOptions='$veganOptions', specialCake='$specialCake', largeTable='$tableSize', tablesOutside='$tablesOutside', kidsMeals='$kidsMeals', exLargePizzas='$largePizzas', playSong='$song' where eventID = '$res';";          
           mysqli_query($con,$query);
-          $query2 = "insert into specialRequests (veganOptions,specialCake,largeTable,tablesOutside,kidsMeals,exLargePizzas,playSong) values ('$veganOptions', '$specialCake', '$tableSize', '$tablesOutside', '$kidsTable', '$largePizzas', '$song')";          
-
-          
+          $query1 = "select * from events where name = '$eventName'";
+          $res = mysqli_query($con,$query1)->fetch_assoc();
+          $res1 = $res['eventID'];
+          $query2 = "insert into specialRequests (veganOptions,specialCake,largeTable,tablesOutside,kidsMeals,exLargePizzas,playSong,eventID) values ('$veganOptions', '$specialCake', '$tableSize', '$tablesOutside', '$kidsMeals', '$largePizzas', '$playSong', '$res1')";
           mysqli_query($con,$query2);
-
-          //$query3 = "update specialRequests set specialRequestsID = 'select specialRequestsID from events where name='$eventName'";
-         // mysqli_query($con,$query3);
-
           echo "<h3>New event added.</h3>";
           //$value = "None";
           //header("Refresh:0");
@@ -94,8 +95,8 @@
       }
       else if ($value == 'delete') {
         $query1 = "delete from events where eventID='$eventID';";
-        //$query2 = "delete from specialRequests where specialRequestsID='select specialRequestsID from events where eventID='$eventID'';";//Deleting special requests item 
-        //mysqli_query($con,$query2);
+        $query2 = "delete from specialRequests where eventID='$eventID';";//Deleting special requests item 
+        mysqli_query($con,$query2);
         mysqli_query($con,$query1);
 
         echo "<h3>Event deleted.</h3>";
@@ -127,7 +128,6 @@
               <input type='hidden' name='numAtendees' id='numAtendees' value='" . $row['numAtendees'] . "'/>
               <input type='hidden' name='date' id='date' value='" . $row['date'] . "'/>
               <input type='hidden' name='description' id='description' value='" . $row['description'] . "'/>
-              <input type='hidden' name='specialRequestsID' id='specialRequestsID' value='" . $row['specialRequestsID'] . "'/>
               <input type='hidden' name='status' id='status' value='" . $row['status'] . "'/>";
 
               if (!isset($_SESSION["employeeID"])) {
