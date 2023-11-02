@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table Reservation</title>
     <!-- Add any necessary CSS stylesheets or libraries here -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="TableAvailable.css">
 </head>
+
 <body>
     <header>
         <h1>Table Reservation</h1>
     </header>
+    
     <main>
         <!-- View Tables and Request Reservation Section -->
         <section id="tableReservation">
             <h2>Table Availability</h2>
+            
             <!-- Display tables and their availability (replace with dynamic data from your backend) -->
             <table>
                 <thead>
@@ -25,29 +29,18 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Example data (replace with dynamic data from your system): -->
-                    <tr>
-                        <td>Table 1</td>
-                        <td>4</td>
-                        <td>Available</td>
-                        <td><button onclick="requestReservation('Table 1')">Request Reservation</button></td>
-                    </tr>
-                    <!-- Add more rows as needed -->
+                <tbody id="tableBody">
+                    <!-- Rows will be inserted here via JavaScript -->
                 </tbody>
+                
             </table>
         </section>
     </main>
-    <footer>
-        <!-- Add any footer content here -->
-    </footer>
 
-    <!-- JavaScript code for handling reservation requests -->
-    <script>
-        function requestReservation(tableNumber) {
-            // You can implement reservation request functionality here
-            alert(`Reservation requested for ${tableNumber}`);
-        }
-    </script>
+    <footer>
+        <p>&copy; 2023 Restaurant Name. All Rights Reserved.</p>
+    </footer>
 </body>
+<script src="TableAvailable.js"></script>
+
 </html>
