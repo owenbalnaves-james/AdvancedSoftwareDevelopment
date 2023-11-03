@@ -24,8 +24,8 @@
             }
         }
 
-        function changeUserType() {
-            if (isset($_SESSION["user"]) || $_SESSION["user"] == "customer") {
+        function changeUserType($con) {
+            if (!isset($_SESSION["user"]) || $_SESSION["user"] == "customer") {
                 $_SESSION["user"] = "employee";
             }
             else if ($_SESSION["user"] == "employee") {

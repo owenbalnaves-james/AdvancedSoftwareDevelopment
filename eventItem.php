@@ -37,7 +37,7 @@
     $viewDate = $_POST['date'];
     $viewDescription = $_POST['description'];
     $organiserID = $_POST['organiserID'];
-    $specialRequestsID = $_POST['specialRequestsID'];
+    //$specialRequestsID = $_POST['specialRequestsID'];
     $value = "edit";
     $eventID = $_POST['eventID'];
 
@@ -76,7 +76,7 @@
         <br>
         <label id="icon"><i class="input">Number of atendees:  </i></label><br><br>
         <?php if (!isset($_SESSION['user'])) {?>
-        <input type="number" name="numAtendees" id="numAtendees" value="<?php echo $viewNumAtendees;?>" required/>
+        <input type="number" name="numAtendees" id="numAtendees" value="<?php echo $viewNumAtendees;?>" min="1" required/>
         <?php } else { ?>
           <p><?php echo $viewNumAtendees; ?></p>
         <?php } ?>
@@ -138,7 +138,7 @@
           <br>
           <br>
           <label>Select table size:</label> <br><br>
-          <input type="number" name="tableSize" id="tableSize" value="<?php echo $largeTable ?>" required/>
+          <input type="number" name="tableSize" id="tableSize" value="<?php echo $largeTable ?>" min="1" required/>
           <?php if (isset($_POST['eventID']))  {
             echo "<p>Currently set: " . $largeTable . "</p>";
           } ?>
@@ -185,7 +185,7 @@
           <br>
           <br>
           <label>Play song during dinner</label><br><br>
-          <input type="text" name="song" id="song" value=""/>
+          <input type="text" name="song" id="song" value="None"/>
           <?php if (isset($_POST['eventID']))  {
             echo "<p>Current song preference (if any): " . $playSong . "</p>";
           } ?>
@@ -201,7 +201,7 @@
         <br><br><br>
 
           <?php 
-          if (isset($_POST['status']) && $_POST['status'] == "submitted") { ?>
+          if (isset($_POST['status']) && $_POST['status'] == "submitted" && isset($_SESSION['user']) && $_SESSION['user'] == "employee") { ?>
           <select name="status" id="status"> 
               <option value="approved">Approve</option> 
               <option value="rejected">Reject</option> 

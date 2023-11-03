@@ -16,7 +16,7 @@
 <body>
   <?php
     if (isset($_POST["changeUserButton"])) {
-      changeUserType();
+      changeUserType($con);
     }
 
     if (isset($_SESSION["user"]) && $_SESSION["user"] == "customer") {//customer using site
@@ -62,14 +62,14 @@
         
         if ($value == 'edit') {
           if (!isset($_POST["customerID"])) {
-            $specialReqID = $_POST['specialRequestsID'];
+            //$specialReqID = $_POST['specialRequestsID'];
             $eventID = $_POST['eventID'];
             $query = "update events set name='$eventName', numAtendees='$numAtendees', date='$eventDate', description='$eventDescription' where eventID = '$eventID';";
             mysqli_query($con,$query);
             $query1 = "select * from events where name = '$eventName'";
             $res = mysqli_query($con,$query1)->fetch_assoc();
             $res1 = $res['eventID'];
-            $query2 = "update specialRequests set veganOptions='$veganOptions', specialCake='$specialCake', largeTable='$tableSize', tablesOutside='$tablesOutside', kidsMeals='$kidsMeals', exLargePizzas='$largePizzas', playSong='$song' where eventID = '$res1';";          
+            $query2 = "update specialRequests set veganOptions='$veganOptions', specialCake='$specialCake', largeTable='$tableSize', tablesOutside='$tablesOutside', kidsMeals='$kidsMeals', exLargePizzas='$largePizzas', playSong='$playSong' where eventID = '$res1';";          
             mysqli_query($con,$query2); 
             echo "<h3>Event edited.</h3>";
             $value = "None";
@@ -157,7 +157,7 @@
         else {
           echo "<h4 class='subHeading'> No events listed. </h4>";
         }
-        if (!isset($_SESSION["user"])) { 
+        if (!isset($_SESSION["user"] ) || $_SESSION["user"] == "customer") { 
           $abc = 444;
           echo "<br><br><form action='eventItem.php' method='POST'> 
           <input type='hidden' name='organiserID' id='organiserID' value='" . $abc . "'/>
@@ -171,11 +171,12 @@
   
   ?>
   <br><br><br><br><br>
-  <!--
-    <form style='position:absolute; margin-top:23%;'>
-      <input class='c-btn'  type='submit' name='changeUserButton' id='changeUserButton' value='Change user type'/>
+  
+    <form style='position:absolute; margin-top:-10%;'>
+      <input class='c-btn'  type='hidden' name='changeUserButton' id='changeUserButton' value='Change user type'/>
+      <input class='c-btn'  type='submit' name='aaa' id='aaa' value='Change user type'/>
     </form>
-    -->
+    
 
 
 
